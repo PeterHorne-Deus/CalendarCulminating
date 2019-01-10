@@ -7,6 +7,7 @@
 
 package calendarCulminating;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -103,14 +104,19 @@ public class calendarCulminating extends javax.swing.JFrame {
         fourthTxtArea = new javax.swing.JTextArea();
         thirdScrollPane = new javax.swing.JScrollPane();
         thirdTxtArea = new javax.swing.JTextArea();
-        firstJFrame = new javax.swing.JFrame();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        firstUpdateBtn = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        exitBtn = new javax.swing.JButton();
+        firstJFrame = new javax.swing.JFrame();
+        backgroundPanel = new javax.swing.JPanel();
+        dateLbl = new javax.swing.JLabel();
+        updateBtn = new javax.swing.JButton();
+        endTimeTxtFeild = new javax.swing.JTextField();
+        activityLbl = new javax.swing.JLabel();
+        endTimeLbl = new javax.swing.JLabel();
+        activivityTxtFeild = new javax.swing.JTextField();
+        startTimeLbl = new javax.swing.JLabel();
+        startTimeTxtFeild = new javax.swing.JTextField();
         secondJFrame = new javax.swing.JFrame();
         thirdJFrame = new javax.swing.JFrame();
         fourthJFrame = new javax.swing.JFrame();
@@ -166,248 +172,267 @@ public class calendarCulminating extends javax.swing.JFrame {
         });
         firstScrollPane.setViewportView(firstTxtArea);
 
-        monthBackgroundPnl.add(firstScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 80));
+        monthBackgroundPnl.add(firstScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 190, 80));
 
         twentyFirstTxtArea.setColumns(20);
         twentyFirstTxtArea.setRows(5);
         twentyFirstTxtArea.setText("21st");
         twentyFirstScrollPane.setViewportView(twentyFirstTxtArea);
 
-        monthBackgroundPnl.add(twentyFirstScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 160, 190, 80));
+        monthBackgroundPnl.add(twentyFirstScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 310, 190, 80));
 
         secondTxtArea.setColumns(20);
         secondTxtArea.setRows(5);
         secondTxtArea.setText("2nd");
         secondScrollPane.setViewportView(secondTxtArea);
 
-        monthBackgroundPnl.add(secondScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 190, 80));
+        monthBackgroundPnl.add(secondScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 190, 80));
 
         twentySecondTxtArea.setColumns(20);
         twentySecondTxtArea.setRows(5);
         twentySecondTxtArea.setText("22nd");
         twentySecondScrollPane.setViewportView(twentySecondTxtArea);
 
-        monthBackgroundPnl.add(twentySecondScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 190, 80));
+        monthBackgroundPnl.add(twentySecondScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 190, 80));
 
         twentyThirdTxtArea.setColumns(20);
         twentyThirdTxtArea.setRows(5);
         twentyThirdTxtArea.setText("23rd");
         twentyThirdScrollPane.setViewportView(twentyThirdTxtArea);
 
-        monthBackgroundPnl.add(twentyThirdScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 190, 80));
+        monthBackgroundPnl.add(twentyThirdScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, 80));
 
         twentyEighthTxtArea.setColumns(20);
         twentyEighthTxtArea.setRows(5);
         twentyEighthTxtArea.setText("28th");
         twentyEighthScrollPane.setViewportView(twentyEighthTxtArea);
 
-        monthBackgroundPnl.add(twentyEighthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 240, 190, 80));
+        monthBackgroundPnl.add(twentyEighthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 390, 190, 80));
 
         twentyFourthTxtArea.setColumns(20);
         twentyFourthTxtArea.setRows(5);
         twentyFourthTxtArea.setText("24th");
         twentyFourthScrollPane.setViewportView(twentyFourthTxtArea);
 
-        monthBackgroundPnl.add(twentyFourthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, 190, 80));
+        monthBackgroundPnl.add(twentyFourthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 190, 80));
 
         twentyFifthTxtArea.setColumns(20);
         twentyFifthTxtArea.setRows(5);
         twentyFifthTxtArea.setText("25th");
         twentyFifthScrollPane.setViewportView(twentyFifthTxtArea);
 
-        monthBackgroundPnl.add(twentyFifthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 190, 80));
+        monthBackgroundPnl.add(twentyFifthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 190, 80));
 
         twentySixthTxtArea.setColumns(20);
         twentySixthTxtArea.setRows(5);
         twentySixthTxtArea.setText("26th");
         twentySixthScrollPane.setViewportView(twentySixthTxtArea);
 
-        monthBackgroundPnl.add(twentySixthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 190, 80));
+        monthBackgroundPnl.add(twentySixthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 390, 190, 80));
 
         twentySeventhTxtArea.setColumns(20);
         twentySeventhTxtArea.setRows(5);
         twentySeventhTxtArea.setText("27th");
         twentySeventhScrollPane.setViewportView(twentySeventhTxtArea);
 
-        monthBackgroundPnl.add(twentySeventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 240, 190, 80));
+        monthBackgroundPnl.add(twentySeventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 390, 190, 80));
 
         fifteenthTxtArea.setColumns(20);
         fifteenthTxtArea.setRows(5);
         fifteenthTxtArea.setText("15th");
         fifteenthScrollPane.setViewportView(fifteenthTxtArea);
 
-        monthBackgroundPnl.add(fifteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 190, 80));
+        monthBackgroundPnl.add(fifteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 190, 80));
 
         sixteenthTxtArea.setColumns(20);
         sixteenthTxtArea.setRows(5);
         sixteenthTxtArea.setText("16th");
         sixteenthScrollPane.setViewportView(sixteenthTxtArea);
 
-        monthBackgroundPnl.add(sixteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 190, 80));
+        monthBackgroundPnl.add(sixteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 190, 80));
 
         seventeenthTxtArea.setColumns(20);
         seventeenthTxtArea.setRows(5);
         seventeenthTxtArea.setText("17th");
         seventeenthScrollPane.setViewportView(seventeenthTxtArea);
 
-        monthBackgroundPnl.add(seventeenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 190, 80));
+        monthBackgroundPnl.add(seventeenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 190, 80));
 
         eighteenthTxtArea.setColumns(20);
         eighteenthTxtArea.setRows(5);
         eighteenthTxtArea.setText("18th");
         eighteenthScrollPane.setViewportView(eighteenthTxtArea);
 
-        monthBackgroundPnl.add(eighteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 190, 80));
+        monthBackgroundPnl.add(eighteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, 190, 80));
 
         nineteenthTxtArea.setColumns(20);
         nineteenthTxtArea.setRows(5);
         nineteenthTxtArea.setText("19th");
         nineteenthScrollPane.setViewportView(nineteenthTxtArea);
 
-        monthBackgroundPnl.add(nineteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, 190, 80));
+        monthBackgroundPnl.add(nineteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 310, 190, 80));
 
         twentiethTxtArea.setColumns(20);
         twentiethTxtArea.setRows(5);
         twentiethTxtArea.setText("20th");
         twentiethScrollPane.setViewportView(twentiethTxtArea);
 
-        monthBackgroundPnl.add(twentiethScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 160, 190, 80));
+        monthBackgroundPnl.add(twentiethScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 310, 190, 80));
 
         eighthTxtArea.setColumns(20);
         eighthTxtArea.setRows(5);
         eighthTxtArea.setText("8th");
         eighthScrollPane.setViewportView(eighthTxtArea);
 
-        monthBackgroundPnl.add(eighthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 190, 80));
+        monthBackgroundPnl.add(eighthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 190, 80));
 
         ninthTxtArea.setColumns(20);
         ninthTxtArea.setRows(5);
         ninthTxtArea.setText("9th");
         ninthScrollPane.setViewportView(ninthTxtArea);
 
-        monthBackgroundPnl.add(ninthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 190, 80));
+        monthBackgroundPnl.add(ninthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 190, 80));
 
         tenthTxtArea.setColumns(20);
         tenthTxtArea.setRows(5);
         tenthTxtArea.setText("10th");
         tenthScrollPane.setViewportView(tenthTxtArea);
 
-        monthBackgroundPnl.add(tenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 190, 80));
+        monthBackgroundPnl.add(tenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 190, 80));
 
         eleventhTxtArea.setColumns(20);
         eleventhTxtArea.setRows(5);
         eleventhTxtArea.setText("11th");
         eleventhScrollPane.setViewportView(eleventhTxtArea);
 
-        monthBackgroundPnl.add(eleventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 190, 80));
+        monthBackgroundPnl.add(eleventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 190, 80));
 
         twelfthTxtArea.setColumns(20);
         twelfthTxtArea.setRows(5);
         twelfthTxtArea.setText("12th");
         twelfthScrollPane.setViewportView(twelfthTxtArea);
 
-        monthBackgroundPnl.add(twelfthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 80, 190, 80));
+        monthBackgroundPnl.add(twelfthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, 190, 80));
 
         thirteenthTxtArea.setColumns(20);
         thirteenthTxtArea.setRows(5);
         thirteenthTxtArea.setText("13th");
         thirteenthScrollPane.setViewportView(thirteenthTxtArea);
 
-        monthBackgroundPnl.add(thirteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 80, 190, 80));
+        monthBackgroundPnl.add(thirteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 230, 190, 80));
 
         fourteenthTxtArea.setColumns(20);
         fourteenthTxtArea.setRows(5);
         fourteenthTxtArea.setText("14th");
         fourteenthScrollPane.setViewportView(fourteenthTxtArea);
 
-        monthBackgroundPnl.add(fourteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 80, 190, 80));
+        monthBackgroundPnl.add(fourteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 230, 190, 80));
 
         seventhTxtArea.setColumns(20);
         seventhTxtArea.setRows(5);
         seventhTxtArea.setText("7th");
         seventhScrollPane.setViewportView(seventhTxtArea);
 
-        monthBackgroundPnl.add(seventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 0, 190, 80));
+        monthBackgroundPnl.add(seventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 150, 190, 80));
 
         fifthTxtArea.setColumns(20);
         fifthTxtArea.setRows(5);
         fifthTxtArea.setText("5th");
         fifthScrollPane.setViewportView(fifthTxtArea);
 
-        monthBackgroundPnl.add(fifthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 190, 80));
+        monthBackgroundPnl.add(fifthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 190, 80));
 
         sixthTxtArea.setColumns(20);
         sixthTxtArea.setRows(5);
         sixthTxtArea.setText("6th");
         sixthScrollPane.setViewportView(sixthTxtArea);
 
-        monthBackgroundPnl.add(sixthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, 190, 80));
+        monthBackgroundPnl.add(sixthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 150, 190, 80));
 
         fourthTxtArea.setColumns(20);
         fourthTxtArea.setRows(5);
         fourthTxtArea.setText("4th");
         fourthScrollPane.setViewportView(fourthTxtArea);
 
-        monthBackgroundPnl.add(fourthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 190, 80));
+        monthBackgroundPnl.add(fourthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 190, 80));
 
         thirdTxtArea.setColumns(20);
         thirdTxtArea.setRows(5);
         thirdTxtArea.setText("3rd");
         thirdScrollPane.setViewportView(thirdTxtArea);
 
-        monthBackgroundPnl.add(thirdScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 190, 80));
+        monthBackgroundPnl.add(thirdScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 190, 80));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Username's Calendar");
+        monthBackgroundPnl.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Date: Febuary, 2015");
+        monthBackgroundPnl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
+
+        exitBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        exitBtn.setForeground(new java.awt.Color(255, 255, 255));
+        exitBtn.setText("Exit");
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitBtnActionPerformed(evt);
+            }
+        });
+        monthBackgroundPnl.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         javax.swing.GroupLayout monthJFrameLayout = new javax.swing.GroupLayout(monthJFrame.getContentPane());
         monthJFrame.getContentPane().setLayout(monthJFrameLayout);
         monthJFrameLayout.setHorizontalGroup(
             monthJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(monthJFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         monthJFrameLayout.setVerticalGroup(
             monthJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(monthJFrameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
+        backgroundPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Sunday Febuary 1st, 2015");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        dateLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dateLbl.setText("Sunday Febuary 1st, 2015");
+        backgroundPanel.add(dateLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
-        firstUpdateBtn.setText("Update");
-        firstUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstUpdateBtnActionPerformed(evt);
+                updateBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(firstUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 160, -1));
+        backgroundPanel.add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        backgroundPanel.add(endTimeTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 160, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Activity:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        activityLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        activityLbl.setText("Activity:");
+        backgroundPanel.add(activityLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Time:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 160, -1));
+        endTimeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        endTimeLbl.setText("End Time:");
+        backgroundPanel.add(endTimeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        backgroundPanel.add(activivityTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 160, -1));
+
+        startTimeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        startTimeLbl.setText("Start Time:");
+        backgroundPanel.add(startTimeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        backgroundPanel.add(startTimeTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 160, -1));
 
         javax.swing.GroupLayout firstJFrameLayout = new javax.swing.GroupLayout(firstJFrame.getContentPane());
         firstJFrame.getContentPane().setLayout(firstJFrameLayout);
         firstJFrameLayout.setHorizontalGroup(
             firstJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
         );
         firstJFrameLayout.setVerticalGroup(
             firstJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout secondJFrameLayout = new javax.swing.GroupLayout(secondJFrame.getContentPane());
@@ -791,11 +816,10 @@ public class calendarCulminating extends javax.swing.JFrame {
         
     }//GEN-LAST:event_firstTxtAreaMouseClicked
 
-    private void firstUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstUpdateBtnActionPerformed
-        //activities = firstActivitiesTxtArea.getText();
-        firstTxtArea.setText("1st \n" + activities);
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        
         monthJFrame.show();
-    }//GEN-LAST:event_firstUpdateBtnActionPerformed
+    }//GEN-LAST:event_updateBtnActionPerformed
 
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
         //Hiding the main sign in screen
@@ -806,7 +830,14 @@ public class calendarCulminating extends javax.swing.JFrame {
         
         //Came From Stack Overflow
         monthJFrame.setSize(screenSize.width, screenSize.height);
+        
+        //Colouring exit button
+        exitBtn.setBackground(Color.red);
     }//GEN-LAST:event_signInBtnActionPerformed
+
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -844,7 +875,11 @@ public class calendarCulminating extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel activityLbl;
+    private javax.swing.JTextField activivityTxtFeild;
+    private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton createAccountBtn;
+    private javax.swing.JLabel dateLbl;
     private javax.swing.JFrame eighteenthJFrame;
     private javax.swing.JScrollPane eighteenthScrollPane;
     private javax.swing.JTextArea eighteenthTxtArea;
@@ -854,6 +889,9 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame eleventhJFrame;
     private javax.swing.JScrollPane eleventhScrollPane;
     private javax.swing.JTextArea eleventhTxtArea;
+    private javax.swing.JLabel endTimeLbl;
+    private javax.swing.JTextField endTimeTxtFeild;
+    private javax.swing.JButton exitBtn;
     private javax.swing.JFrame fifteenthJFrame;
     private javax.swing.JScrollPane fifteenthScrollPane;
     private javax.swing.JTextArea fifteenthTxtArea;
@@ -863,7 +901,6 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame firstJFrame;
     private javax.swing.JScrollPane firstScrollPane;
     private javax.swing.JTextArea firstTxtArea;
-    private javax.swing.JButton firstUpdateBtn;
     private javax.swing.JFrame fourteenthJFrame;
     private javax.swing.JScrollPane fourteenthScrollPane;
     private javax.swing.JTextArea fourteenthTxtArea;
@@ -871,11 +908,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JScrollPane fourthScrollPane;
     private javax.swing.JTextArea fourthTxtArea;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel monthBackgroundPnl;
     private javax.swing.JFrame monthJFrame;
     private javax.swing.JFrame nineteenthJFrame;
@@ -913,6 +946,8 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame sixthJFrame;
     private javax.swing.JScrollPane sixthScrollPane;
     private javax.swing.JTextArea sixthTxtArea;
+    private javax.swing.JLabel startTimeLbl;
+    private javax.swing.JTextField startTimeTxtFeild;
     private javax.swing.JFrame tenthJFrame;
     private javax.swing.JScrollPane tenthScrollPane;
     private javax.swing.JTextArea tenthTxtArea;
@@ -952,6 +987,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame twentyThirdJFrame;
     private javax.swing.JScrollPane twentyThirdScrollPane;
     private javax.swing.JTextArea twentyThirdTxtArea;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 
     
