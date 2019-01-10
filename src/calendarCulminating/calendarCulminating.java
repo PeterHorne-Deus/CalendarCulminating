@@ -106,10 +106,11 @@ public class calendarCulminating extends javax.swing.JFrame {
         firstJFrame = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        firstActivitiesTxtArea = new javax.swing.JTextArea();
         firstUpdateBtn = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
         secondJFrame = new javax.swing.JFrame();
         thirdJFrame = new javax.swing.JFrame();
         fourthJFrame = new javax.swing.JFrame();
@@ -138,20 +139,20 @@ public class calendarCulminating extends javax.swing.JFrame {
         twentySeventhJFrame = new javax.swing.JFrame();
         twentyEighthJFrame = new javax.swing.JFrame();
         signInBackgroundPnl = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        signUpLbl = new javax.swing.JLabel();
+        signInPasswordTxtFeild = new javax.swing.JTextField();
+        signUpReEnterPasswordLbl = new javax.swing.JLabel();
+        signUpUsernameLbl = new javax.swing.JLabel();
+        signUpReEnterPasswordTxtFeild = new javax.swing.JTextField();
+        signInLbl = new javax.swing.JLabel();
+        signInUsernameLbl = new javax.swing.JLabel();
+        signInUsernameTxtFeild = new javax.swing.JTextField();
+        signUpUsernameTxtFeild = new javax.swing.JTextField();
+        signUpPasswordTxtFeild = new javax.swing.JTextField();
+        signInPasswordLbl = new javax.swing.JLabel();
+        signUpPasswordLbl = new javax.swing.JLabel();
+        createAccountBtn = new javax.swing.JButton();
+        signInBtn = new javax.swing.JButton();
 
         monthBackgroundPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -380,22 +381,23 @@ public class calendarCulminating extends javax.swing.JFrame {
         jLabel1.setText("Sunday Febuary 1st, 2015");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
-        jLabel2.setText("Enter Your Schedule:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
-
-        firstActivitiesTxtArea.setColumns(20);
-        firstActivitiesTxtArea.setRows(5);
-        jScrollPane1.setViewportView(firstActivitiesTxtArea);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 180, 130));
-
         firstUpdateBtn.setText("Update");
         firstUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 firstUpdateBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(firstUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
+        jPanel1.add(firstUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 160, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Activity:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Time:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 160, -1));
 
         javax.swing.GroupLayout firstJFrameLayout = new javax.swing.GroupLayout(firstJFrame.getContentPane());
         firstJFrame.getContentPane().setLayout(firstJFrameLayout);
@@ -707,49 +709,49 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         signInBackgroundPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Sign Up:");
-        signInBackgroundPnl.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
-        signInBackgroundPnl.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 170, 20));
+        signUpLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        signUpLbl.setText("Sign Up:");
+        signInBackgroundPnl.add(signUpLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
+        signInBackgroundPnl.add(signInPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 170, 20));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Re-enter Password:");
-        signInBackgroundPnl.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        signUpReEnterPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signUpReEnterPasswordLbl.setText("Re-enter Password:");
+        signInBackgroundPnl.add(signUpReEnterPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Username:");
-        signInBackgroundPnl.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-        signInBackgroundPnl.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 170, 20));
+        signUpUsernameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signUpUsernameLbl.setText("Username:");
+        signInBackgroundPnl.add(signUpUsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        signInBackgroundPnl.add(signUpReEnterPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 170, 20));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Sign In:");
-        signInBackgroundPnl.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+        signInLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        signInLbl.setText("Sign In:");
+        signInBackgroundPnl.add(signInLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Username:");
-        signInBackgroundPnl.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
-        signInBackgroundPnl.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 170, 20));
-        signInBackgroundPnl.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 20));
-        signInBackgroundPnl.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 170, 20));
+        signInUsernameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signInUsernameLbl.setText("Username:");
+        signInBackgroundPnl.add(signInUsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        signInBackgroundPnl.add(signInUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 170, 20));
+        signInBackgroundPnl.add(signUpUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 20));
+        signInBackgroundPnl.add(signUpPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 170, 20));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Password:");
-        signInBackgroundPnl.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        signInPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signInPasswordLbl.setText("Password:");
+        signInBackgroundPnl.add(signInPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Password:");
-        signInBackgroundPnl.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        signUpPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signUpPasswordLbl.setText("Password:");
+        signInBackgroundPnl.add(signUpPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
-        jButton1.setText("Create Account");
-        signInBackgroundPnl.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
+        createAccountBtn.setText("Create Account");
+        signInBackgroundPnl.add(createAccountBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
 
-        jButton2.setText("Sign In");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        signInBtn.setText("Sign In");
+        signInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                signInBtnActionPerformed(evt);
             }
         });
-        signInBackgroundPnl.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
+        signInBackgroundPnl.add(signInBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -790,12 +792,12 @@ public class calendarCulminating extends javax.swing.JFrame {
     }//GEN-LAST:event_firstTxtAreaMouseClicked
 
     private void firstUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstUpdateBtnActionPerformed
-        activities = firstActivitiesTxtArea.getText();
+        //activities = firstActivitiesTxtArea.getText();
         firstTxtArea.setText("1st \n" + activities);
         monthJFrame.show();
     }//GEN-LAST:event_firstUpdateBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
         //Hiding the main sign in screen
         hide();
         
@@ -804,7 +806,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         
         //Came From Stack Overflow
         monthJFrame.setSize(screenSize.width, screenSize.height);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_signInBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -842,6 +844,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createAccountBtn;
     private javax.swing.JFrame eighteenthJFrame;
     private javax.swing.JScrollPane eighteenthScrollPane;
     private javax.swing.JTextArea eighteenthTxtArea;
@@ -857,7 +860,6 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame fifthJFrame;
     private javax.swing.JScrollPane fifthScrollPane;
     private javax.swing.JTextArea fifthTxtArea;
-    private javax.swing.JTextArea firstActivitiesTxtArea;
     private javax.swing.JFrame firstJFrame;
     private javax.swing.JScrollPane firstScrollPane;
     private javax.swing.JTextArea firstTxtArea;
@@ -868,24 +870,12 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame fourthJFrame;
     private javax.swing.JScrollPane fourthScrollPane;
     private javax.swing.JTextArea fourthTxtArea;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JPanel monthBackgroundPnl;
     private javax.swing.JFrame monthJFrame;
     private javax.swing.JFrame nineteenthJFrame;
@@ -904,6 +894,19 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JScrollPane seventhScrollPane;
     private javax.swing.JTextArea seventhTxtArea;
     private javax.swing.JPanel signInBackgroundPnl;
+    private javax.swing.JButton signInBtn;
+    private javax.swing.JLabel signInLbl;
+    private javax.swing.JLabel signInPasswordLbl;
+    private javax.swing.JTextField signInPasswordTxtFeild;
+    private javax.swing.JLabel signInUsernameLbl;
+    private javax.swing.JTextField signInUsernameTxtFeild;
+    private javax.swing.JLabel signUpLbl;
+    private javax.swing.JLabel signUpPasswordLbl;
+    private javax.swing.JTextField signUpPasswordTxtFeild;
+    private javax.swing.JLabel signUpReEnterPasswordLbl;
+    private javax.swing.JTextField signUpReEnterPasswordTxtFeild;
+    private javax.swing.JLabel signUpUsernameLbl;
+    private javax.swing.JTextField signUpUsernameTxtFeild;
     private javax.swing.JFrame sixteenthJFrame;
     private javax.swing.JScrollPane sixteenthScrollPane;
     private javax.swing.JTextArea sixteenthTxtArea;
