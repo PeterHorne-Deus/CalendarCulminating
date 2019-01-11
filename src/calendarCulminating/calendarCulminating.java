@@ -117,6 +117,8 @@ public class calendarCulminating extends javax.swing.JFrame {
         activivityTxtFeild = new javax.swing.JTextField();
         startTimeLbl = new javax.swing.JLabel();
         startTimeTxtFeild = new javax.swing.JTextField();
+        endAmPmCombBox = new javax.swing.JComboBox();
+        startAmPmCombBox = new javax.swing.JComboBox();
         secondJFrame = new javax.swing.JFrame();
         thirdJFrame = new javax.swing.JFrame();
         fourthJFrame = new javax.swing.JFrame();
@@ -160,6 +162,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         createAccountBtn = new javax.swing.JButton();
         signInBtn = new javax.swing.JButton();
 
+        monthBackgroundPnl.setBackground(new java.awt.Color(204, 255, 255));
         monthBackgroundPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         firstTxtArea.setColumns(20);
@@ -372,7 +375,6 @@ public class calendarCulminating extends javax.swing.JFrame {
         monthBackgroundPnl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
 
         exitBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        exitBtn.setForeground(new java.awt.Color(255, 255, 255));
         exitBtn.setText("Exit");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,13 +387,11 @@ public class calendarCulminating extends javax.swing.JFrame {
         monthJFrame.getContentPane().setLayout(monthJFrameLayout);
         monthJFrameLayout.setHorizontalGroup(
             monthJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(monthJFrameLayout.createSequentialGroup()
-                .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+            .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 1363, Short.MAX_VALUE)
         );
         monthJFrameLayout.setVerticalGroup(
             monthJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -423,6 +423,12 @@ public class calendarCulminating extends javax.swing.JFrame {
         startTimeLbl.setText("Start Time:");
         backgroundPanel.add(startTimeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
         backgroundPanel.add(startTimeTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 160, -1));
+
+        endAmPmCombBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AM", "PM" }));
+        backgroundPanel.add(endAmPmCombBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, -1, -1));
+
+        startAmPmCombBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AM", "PM" }));
+        backgroundPanel.add(startAmPmCombBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, -1));
 
         javax.swing.GroupLayout firstJFrameLayout = new javax.swing.GroupLayout(firstJFrame.getContentPane());
         firstJFrame.getContentPane().setLayout(firstJFrameLayout);
@@ -737,39 +743,41 @@ public class calendarCulminating extends javax.swing.JFrame {
         signUpLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpLbl.setText("Sign Up:");
         signInBackgroundPnl.add(signUpLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
-        signInBackgroundPnl.add(signInPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 170, 20));
+        signInBackgroundPnl.add(signInPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 170, 30));
 
-        signUpReEnterPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signUpReEnterPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpReEnterPasswordLbl.setText("Re-enter Password:");
-        signInBackgroundPnl.add(signUpReEnterPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        signInBackgroundPnl.add(signUpReEnterPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, -1, 20));
 
-        signUpUsernameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signUpUsernameLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpUsernameLbl.setText("Username:");
         signInBackgroundPnl.add(signUpUsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-        signInBackgroundPnl.add(signUpReEnterPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 170, 20));
+        signInBackgroundPnl.add(signUpReEnterPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 170, 30));
 
         signInLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signInLbl.setText("Sign In:");
         signInBackgroundPnl.add(signInLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        signInUsernameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signInUsernameLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signInUsernameLbl.setText("Username:");
         signInBackgroundPnl.add(signInUsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
-        signInBackgroundPnl.add(signInUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 170, 20));
-        signInBackgroundPnl.add(signUpUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 20));
-        signInBackgroundPnl.add(signUpPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 170, 20));
+        signInBackgroundPnl.add(signInUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 170, 30));
+        signInBackgroundPnl.add(signUpUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 30));
+        signInBackgroundPnl.add(signUpPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 170, 30));
 
-        signInPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signInPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signInPasswordLbl.setText("Password:");
         signInBackgroundPnl.add(signInPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        signUpPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        signUpPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpPasswordLbl.setText("Password:");
         signInBackgroundPnl.add(signUpPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
+        createAccountBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         createAccountBtn.setText("Create Account");
         signInBackgroundPnl.add(createAccountBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
 
+        signInBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         signInBtn.setText("Sign In");
         signInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -807,18 +815,30 @@ public class calendarCulminating extends javax.swing.JFrame {
         firstJFrame.show();
         
         //Came From Stack Overflow
-        
         firstJFrame.setSize(screenSize.width, screenSize.height);
-        
-        
+ 
         monthJFrame.hide();
-        
-        
     }//GEN-LAST:event_firstTxtAreaMouseClicked
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        //Variables
+        String startTimeAmPm = (String)startAmPmCombBox.getSelectedItem();
+        String endTimeAmPm = (String)endAmPmCombBox.getSelectedItem();
+        String startTime = startTimeTxtFeild.getText();
+        System.out.println(startTime);
+        char startTimeCheck;
+        int[] checkStart = new int[4];
         
+        //Checking start and end time to make sure they are usable times
+        for (int i = 0; i < 4; i ++){
+        startTimeCheck = startTime.charAt(i);
+        checkStart[i] = (int)startTimeCheck - 48 ;
+        System.out.println(checkStart[i]);
+        }
+        
+        //Hiding the day and showing the month
         monthJFrame.show();
+        firstJFrame.hide();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
@@ -889,6 +909,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame eleventhJFrame;
     private javax.swing.JScrollPane eleventhScrollPane;
     private javax.swing.JTextArea eleventhTxtArea;
+    private javax.swing.JComboBox endAmPmCombBox;
     private javax.swing.JLabel endTimeLbl;
     private javax.swing.JTextField endTimeTxtFeild;
     private javax.swing.JButton exitBtn;
@@ -946,6 +967,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame sixthJFrame;
     private javax.swing.JScrollPane sixthScrollPane;
     private javax.swing.JTextArea sixthTxtArea;
+    private javax.swing.JComboBox startAmPmCombBox;
     private javax.swing.JLabel startTimeLbl;
     private javax.swing.JTextField startTimeTxtFeild;
     private javax.swing.JFrame tenthJFrame;
