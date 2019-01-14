@@ -107,9 +107,16 @@ public class calendarCulminating extends javax.swing.JFrame {
         fourthTxtArea = new javax.swing.JTextArea();
         thirdScrollPane = new javax.swing.JScrollPane();
         thirdTxtArea = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        titleLbl = new javax.swing.JLabel();
+        febuaryLbl = new javax.swing.JLabel();
         exitBtn = new javax.swing.JButton();
+        saturdayLbl = new javax.swing.JLabel();
+        sundayLbl = new javax.swing.JLabel();
+        mondayLbl = new javax.swing.JLabel();
+        tuesdayLbl = new javax.swing.JLabel();
+        wednesdayLbl = new javax.swing.JLabel();
+        thrusdayLbl = new javax.swing.JLabel();
+        fridayLbl = new javax.swing.JLabel();
         firstJFrame = new javax.swing.JFrame();
         backgroundPanel = new javax.swing.JPanel();
         dateLbl = new javax.swing.JLabel();
@@ -370,13 +377,13 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(thirdScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 190, 80));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Username's Calendar");
-        monthBackgroundPnl.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+        titleLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titleLbl.setText("Username's Calendar");
+        monthBackgroundPnl.add(titleLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Date: Febuary, 2015");
-        monthBackgroundPnl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
+        febuaryLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        febuaryLbl.setText("Date: Febuary, 2015");
+        monthBackgroundPnl.add(febuaryLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, -1, -1));
 
         exitBtn.setBackground(new java.awt.Color(51, 255, 255));
         exitBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -388,6 +395,34 @@ public class calendarCulminating extends javax.swing.JFrame {
             }
         });
         monthBackgroundPnl.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        saturdayLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        saturdayLbl.setText("Saturday");
+        monthBackgroundPnl.add(saturdayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 110, -1, -1));
+
+        sundayLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        sundayLbl.setText("Sunday");
+        monthBackgroundPnl.add(sundayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+
+        mondayLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        mondayLbl.setText("Monday");
+        monthBackgroundPnl.add(mondayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
+
+        tuesdayLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tuesdayLbl.setText("Tuesday");
+        monthBackgroundPnl.add(tuesdayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
+
+        wednesdayLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        wednesdayLbl.setText("Wednesday");
+        monthBackgroundPnl.add(wednesdayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, -1, -1));
+
+        thrusdayLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        thrusdayLbl.setText("Thursday");
+        monthBackgroundPnl.add(thrusdayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, -1, -1));
+
+        fridayLbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        fridayLbl.setText("Friday");
+        monthBackgroundPnl.add(fridayLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 110, -1, -1));
 
         javax.swing.GroupLayout monthJFrameLayout = new javax.swing.GroupLayout(monthJFrame.getContentPane());
         monthJFrame.getContentPane().setLayout(monthJFrameLayout);
@@ -979,6 +1014,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JTextField endTimeTxtFeild;
     private javax.swing.JLabel errorLbl1;
     private javax.swing.JButton exitBtn;
+    private javax.swing.JLabel febuaryLbl;
     private javax.swing.JFrame fifteenthJFrame;
     private javax.swing.JScrollPane fifteenthScrollPane;
     private javax.swing.JTextArea fifteenthTxtArea;
@@ -994,8 +1030,8 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame fourthJFrame;
     private javax.swing.JScrollPane fourthScrollPane;
     private javax.swing.JTextArea fourthTxtArea;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel fridayLbl;
+    private javax.swing.JLabel mondayLbl;
     private javax.swing.JPanel monthBackgroundPnl;
     private javax.swing.JFrame monthJFrame;
     private javax.swing.JFrame nineteenthJFrame;
@@ -1004,6 +1040,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame ninthJFrame;
     private javax.swing.JScrollPane ninthScrollPane;
     private javax.swing.JTextArea ninthTxtArea;
+    private javax.swing.JLabel saturdayLbl;
     private javax.swing.JFrame secondJFrame;
     private javax.swing.JScrollPane secondScrollPane;
     private javax.swing.JTextArea secondTxtArea;
@@ -1036,6 +1073,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JComboBox startAmPmCombBox;
     private javax.swing.JLabel startTimeLbl;
     private javax.swing.JTextField startTimeTxtFeild;
+    private javax.swing.JLabel sundayLbl;
     private javax.swing.JFrame tenthJFrame;
     private javax.swing.JScrollPane tenthScrollPane;
     private javax.swing.JTextArea tenthTxtArea;
@@ -1045,6 +1083,9 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JFrame thirteenthJFrame;
     private javax.swing.JScrollPane thirteenthScrollPane;
     private javax.swing.JTextArea thirteenthTxtArea;
+    private javax.swing.JLabel thrusdayLbl;
+    private javax.swing.JLabel titleLbl;
+    private javax.swing.JLabel tuesdayLbl;
     private javax.swing.JFrame twelfthJFrame;
     private javax.swing.JScrollPane twelfthScrollPane;
     private javax.swing.JTextArea twelfthTxtArea;
@@ -1076,6 +1117,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JScrollPane twentyThirdScrollPane;
     private javax.swing.JTextArea twentyThirdTxtArea;
     private javax.swing.JButton updateBtn;
+    private javax.swing.JLabel wednesdayLbl;
     // End of variables declaration//GEN-END:variables
 
     
