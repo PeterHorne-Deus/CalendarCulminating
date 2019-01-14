@@ -878,8 +878,12 @@ public class calendarCulminating extends javax.swing.JFrame {
         error = startTime(startTime);
         
         
+        //If there is an error this shows the error label
+        if (error == 1){
+           errorLbl1.setVisible(true); 
+        }
         //Hiding the day and showing the month only if there are no errors
-        if (error != 1){
+        else if (error != 1){
         monthJFrame.show();
         firstJFrame.hide();
         errorLbl1.setVisible(false);
@@ -915,10 +919,11 @@ public class calendarCulminating extends javax.swing.JFrame {
         for (int i = 0; i < 4; i ++){
         startTimeCheck = startTime.charAt(i);
         checkStart[i] = (int)startTimeCheck - 48 ;
-        System.out.println(checkStart[i]);
+        
         if (checkStart[i] < 0){
             //Setting error label to be shown
             errorLbl1.setVisible(true);
+            error = 1;
             
             throw new NumberFormatException();
         }
@@ -936,6 +941,7 @@ public class calendarCulminating extends javax.swing.JFrame {
                 else{
                     //Setting error label to be shown
                     errorLbl1.setVisible(true);
+                    error = 1;
                     
                     throw new Exception ("Must be a time in the twelve hour clock");
                 }
