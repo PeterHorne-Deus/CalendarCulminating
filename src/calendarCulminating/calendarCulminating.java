@@ -10,7 +10,7 @@ package calendarCulminating;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
+import javax.swing.*;
 
 
 
@@ -30,6 +30,8 @@ public class calendarCulminating extends javax.swing.JFrame {
     //Stack overflow
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
+    
+    
     public calendarCulminating() {
         initComponents();
         
@@ -38,7 +40,8 @@ public class calendarCulminating extends javax.swing.JFrame {
         //Stack Overflow
         setSize(screenSize.width, screenSize.height);
         
-        
+        //Setting error labels to be hidden
+        errorLbl1.setVisible(false);
         
     }
 
@@ -119,6 +122,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         startTimeTxtFeild = new javax.swing.JTextField();
         endAmPmCombBox = new javax.swing.JComboBox();
         startAmPmCombBox = new javax.swing.JComboBox();
+        errorLbl1 = new javax.swing.JLabel();
         secondJFrame = new javax.swing.JFrame();
         thirdJFrame = new javax.swing.JFrame();
         fourthJFrame = new javax.swing.JFrame();
@@ -374,7 +378,9 @@ public class calendarCulminating extends javax.swing.JFrame {
         jLabel2.setText("Date: Febuary, 2015");
         monthBackgroundPnl.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
 
+        exitBtn.setBackground(new java.awt.Color(51, 255, 255));
         exitBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        exitBtn.setForeground(new java.awt.Color(255, 255, 255));
         exitBtn.setText("Exit");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -430,11 +436,16 @@ public class calendarCulminating extends javax.swing.JFrame {
         startAmPmCombBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AM", "PM" }));
         backgroundPanel.add(startAmPmCombBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, -1));
 
+        errorLbl1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        errorLbl1.setForeground(new java.awt.Color(255, 0, 0));
+        errorLbl1.setText("Time Error Must be an INT and in the twelve hour clock");
+        backgroundPanel.add(errorLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
         javax.swing.GroupLayout firstJFrameLayout = new javax.swing.GroupLayout(firstJFrame.getContentPane());
         firstJFrame.getContentPane().setLayout(firstJFrameLayout);
         firstJFrameLayout.setHorizontalGroup(
             firstJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
         );
         firstJFrameLayout.setVerticalGroup(
             firstJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -816,7 +827,8 @@ public class calendarCulminating extends javax.swing.JFrame {
         
         //Came From Stack Overflow
         firstJFrame.setSize(screenSize.width, screenSize.height);
- 
+        
+        //Hiding the month page so it looks cleaner
         monthJFrame.hide();
     }//GEN-LAST:event_firstTxtAreaMouseClicked
 
@@ -825,20 +837,18 @@ public class calendarCulminating extends javax.swing.JFrame {
         String startTimeAmPm = (String)startAmPmCombBox.getSelectedItem();
         String endTimeAmPm = (String)endAmPmCombBox.getSelectedItem();
         String startTime = startTimeTxtFeild.getText();
-        System.out.println(startTime);
-        char startTimeCheck;
-        int[] checkStart = new int[4];
+        int error = 0;
         
-        //Checking start and end time to make sure they are usable times
-        for (int i = 0; i < 4; i ++){
-        startTimeCheck = startTime.charAt(i);
-        checkStart[i] = (int)startTimeCheck - 48 ;
-        System.out.println(checkStart[i]);
-        }
+        //Sending to a method to check if the start time is valid
+        error = startTime(startTime);
         
-        //Hiding the day and showing the month
+        
+        //Hiding the day and showing the month only if there are no errors
+        if (error != 1){
         monthJFrame.show();
         firstJFrame.hide();
+        errorLbl1.setVisible(false);
+        }
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
@@ -852,13 +862,68 @@ public class calendarCulminating extends javax.swing.JFrame {
         monthJFrame.setSize(screenSize.width, screenSize.height);
         
         //Colouring exit button
-        exitBtn.setBackground(Color.red);
+        exitBtn.setBackground(Color.black);
     }//GEN-LAST:event_signInBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
-
+    
+    public int startTime(String startTime){
+        char startTimeCheck;
+        int[] checkStart = new int[4];
+        int[] hourTime = new int[2];
+        int error = 0;
+        
+         //Checking start and end time to make sure they are usable times
+        try{
+        for (int i = 0; i < 4; i ++){
+        startTimeCheck = startTime.charAt(i);
+        checkStart[i] = (int)startTimeCheck - 48 ;
+        System.out.println(checkStart[i]);
+        if (checkStart[i] < 0){
+            //Setting error label to be shown
+            errorLbl1.setVisible(true);
+            
+            throw new NumberFormatException();
+        }
+        }
+        if(checkStart[0] == 1){
+            if (checkStart[1] == 10){
+                hourTime[0] = checkStart[0];
+               
+            }
+            else {
+                if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
+                    hourTime[0] = checkStart[0];
+                    hourTime[0] = checkStart[1];
+                }
+                else{
+                    //Setting error label to be shown
+                    errorLbl1.setVisible(true);
+                    
+                    throw new Exception ("Must be a time in the twelve hour clock");
+                }
+            }
+        }
+        }
+        catch (NumberFormatException nfe){
+            System.err.println("You must use Ints");
+            System.err.println("Exception: " + nfe);
+            error = 1;
+            
+            }
+        
+        catch (Exception e){
+            System.err.println("Must be a time in the twelve hour clock");
+            System.err.println("The time must look something like this: 12:00, 12:31");
+            System.err.println("Exception: " + e);
+            error = 1;
+            }
+        
+        return error;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -912,6 +977,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JComboBox endAmPmCombBox;
     private javax.swing.JLabel endTimeLbl;
     private javax.swing.JTextField endTimeTxtFeild;
+    private javax.swing.JLabel errorLbl1;
     private javax.swing.JButton exitBtn;
     private javax.swing.JFrame fifteenthJFrame;
     private javax.swing.JScrollPane fifteenthScrollPane;
