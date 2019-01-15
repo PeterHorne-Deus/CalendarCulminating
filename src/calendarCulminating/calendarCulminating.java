@@ -176,6 +176,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         monthBackgroundPnl.setBackground(new java.awt.Color(204, 255, 255));
         monthBackgroundPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        firstTxtArea.setEditable(false);
         firstTxtArea.setColumns(20);
         firstTxtArea.setRows(5);
         firstTxtArea.setText("1st");
@@ -188,6 +189,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(firstScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 190, 80));
 
+        twentyFirstTxtArea.setEditable(false);
         twentyFirstTxtArea.setColumns(20);
         twentyFirstTxtArea.setRows(5);
         twentyFirstTxtArea.setText("21st");
@@ -195,6 +197,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentyFirstScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 310, 190, 80));
 
+        secondTxtArea.setEditable(false);
         secondTxtArea.setColumns(20);
         secondTxtArea.setRows(5);
         secondTxtArea.setText("2nd");
@@ -202,6 +205,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(secondScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 190, 80));
 
+        twentySecondTxtArea.setEditable(false);
         twentySecondTxtArea.setColumns(20);
         twentySecondTxtArea.setRows(5);
         twentySecondTxtArea.setText("22nd");
@@ -209,6 +213,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentySecondScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 190, 80));
 
+        twentyThirdTxtArea.setEditable(false);
         twentyThirdTxtArea.setColumns(20);
         twentyThirdTxtArea.setRows(5);
         twentyThirdTxtArea.setText("23rd");
@@ -216,6 +221,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentyThirdScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, 80));
 
+        twentyEighthTxtArea.setEditable(false);
         twentyEighthTxtArea.setColumns(20);
         twentyEighthTxtArea.setRows(5);
         twentyEighthTxtArea.setText("28th");
@@ -223,6 +229,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentyEighthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 390, 190, 80));
 
+        twentyFourthTxtArea.setEditable(false);
         twentyFourthTxtArea.setColumns(20);
         twentyFourthTxtArea.setRows(5);
         twentyFourthTxtArea.setText("24th");
@@ -230,6 +237,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentyFourthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 190, 80));
 
+        twentyFifthTxtArea.setEditable(false);
         twentyFifthTxtArea.setColumns(20);
         twentyFifthTxtArea.setRows(5);
         twentyFifthTxtArea.setText("25th");
@@ -237,6 +245,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentyFifthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 190, 80));
 
+        twentySixthTxtArea.setEditable(false);
         twentySixthTxtArea.setColumns(20);
         twentySixthTxtArea.setRows(5);
         twentySixthTxtArea.setText("26th");
@@ -244,6 +253,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentySixthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 390, 190, 80));
 
+        twentySeventhTxtArea.setEditable(false);
         twentySeventhTxtArea.setColumns(20);
         twentySeventhTxtArea.setRows(5);
         twentySeventhTxtArea.setText("27th");
@@ -251,6 +261,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentySeventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 390, 190, 80));
 
+        fifteenthTxtArea.setEditable(false);
         fifteenthTxtArea.setColumns(20);
         fifteenthTxtArea.setRows(5);
         fifteenthTxtArea.setText("15th");
@@ -258,6 +269,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(fifteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 190, 80));
 
+        sixteenthTxtArea.setEditable(false);
         sixteenthTxtArea.setColumns(20);
         sixteenthTxtArea.setRows(5);
         sixteenthTxtArea.setText("16th");
@@ -265,6 +277,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(sixteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 190, 80));
 
+        seventeenthTxtArea.setEditable(false);
         seventeenthTxtArea.setColumns(20);
         seventeenthTxtArea.setRows(5);
         seventeenthTxtArea.setText("17th");
@@ -272,6 +285,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(seventeenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 190, 80));
 
+        eighteenthTxtArea.setEditable(false);
         eighteenthTxtArea.setColumns(20);
         eighteenthTxtArea.setRows(5);
         eighteenthTxtArea.setText("18th");
@@ -279,6 +293,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(eighteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, 190, 80));
 
+        nineteenthTxtArea.setEditable(false);
         nineteenthTxtArea.setColumns(20);
         nineteenthTxtArea.setRows(5);
         nineteenthTxtArea.setText("19th");
@@ -286,6 +301,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(nineteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 310, 190, 80));
 
+        twentiethTxtArea.setEditable(false);
         twentiethTxtArea.setColumns(20);
         twentiethTxtArea.setRows(5);
         twentiethTxtArea.setText("20th");
@@ -293,6 +309,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twentiethScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 310, 190, 80));
 
+        eighthTxtArea.setEditable(false);
         eighthTxtArea.setColumns(20);
         eighthTxtArea.setRows(5);
         eighthTxtArea.setText("8th");
@@ -300,6 +317,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(eighthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 190, 80));
 
+        ninthTxtArea.setEditable(false);
         ninthTxtArea.setColumns(20);
         ninthTxtArea.setRows(5);
         ninthTxtArea.setText("9th");
@@ -307,6 +325,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(ninthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 190, 80));
 
+        tenthTxtArea.setEditable(false);
         tenthTxtArea.setColumns(20);
         tenthTxtArea.setRows(5);
         tenthTxtArea.setText("10th");
@@ -314,6 +333,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(tenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 190, 80));
 
+        eleventhTxtArea.setEditable(false);
         eleventhTxtArea.setColumns(20);
         eleventhTxtArea.setRows(5);
         eleventhTxtArea.setText("11th");
@@ -321,6 +341,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(eleventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 190, 80));
 
+        twelfthTxtArea.setEditable(false);
         twelfthTxtArea.setColumns(20);
         twelfthTxtArea.setRows(5);
         twelfthTxtArea.setText("12th");
@@ -328,6 +349,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(twelfthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, 190, 80));
 
+        thirteenthTxtArea.setEditable(false);
         thirteenthTxtArea.setColumns(20);
         thirteenthTxtArea.setRows(5);
         thirteenthTxtArea.setText("13th");
@@ -335,6 +357,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(thirteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 230, 190, 80));
 
+        fourteenthTxtArea.setEditable(false);
         fourteenthTxtArea.setColumns(20);
         fourteenthTxtArea.setRows(5);
         fourteenthTxtArea.setText("14th");
@@ -342,6 +365,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(fourteenthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 230, 190, 80));
 
+        seventhTxtArea.setEditable(false);
         seventhTxtArea.setColumns(20);
         seventhTxtArea.setRows(5);
         seventhTxtArea.setText("7th");
@@ -349,6 +373,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(seventhScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 150, 190, 80));
 
+        fifthTxtArea.setEditable(false);
         fifthTxtArea.setColumns(20);
         fifthTxtArea.setRows(5);
         fifthTxtArea.setText("5th");
@@ -356,6 +381,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(fifthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 190, 80));
 
+        sixthTxtArea.setEditable(false);
         sixthTxtArea.setColumns(20);
         sixthTxtArea.setRows(5);
         sixthTxtArea.setText("6th");
@@ -363,6 +389,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(sixthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 150, 190, 80));
 
+        fourthTxtArea.setEditable(false);
         fourthTxtArea.setColumns(20);
         fourthTxtArea.setRows(5);
         fourthTxtArea.setText("4th");
@@ -370,6 +397,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         monthBackgroundPnl.add(fourthScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 190, 80));
 
+        thirdTxtArea.setEditable(false);
         thirdTxtArea.setColumns(20);
         thirdTxtArea.setRows(5);
         thirdTxtArea.setText("3rd");
@@ -920,58 +948,89 @@ public class calendarCulminating extends javax.swing.JFrame {
         int[] hourTime = new int[2];
         int[] minute = new int[2];
         int error = 0;
+        char colon = ':';
         
         //General try statment to send to a catch to catch errors in user input
         try{
-            //Setting the user entered start time to an array
-            for (int i = 0; i < 4; i ++){
-            startTimeCheck = startTime.charAt(i);
-            checkStart[i] = (int)startTimeCheck - 48 ;
-            
-            //Checking that all of the numbers are positive
-            if (checkStart[i] < 0){
-                //Setting error label to be shown
+            if(startTime.length() > 5){
                 errorLbl1.setVisible(true);
-                //Sending back that there was an error
                 error = 1;
-                //Throwing to numberformat issues
                 throw new NumberFormatException();
             }
-            }
-            //Checking if the first number is a 1
-            if(checkStart[0] == 1){
-                //If the number is a one I want to check if the second one is a colon or another number
-                if (checkStart[1] == 10){
-                    hourTime[0] = checkStart[0];
-                    //If the number is a colon then I must check a different posisition to check the minute time 
-                    minute[0] = startTime.charAt(2) -48;
-                    minute[1] = startTime.charAt(3) - 48;
-                }
-                else {
-                    //If the second number is not a colon then I must check to make sure it is a time that is useable
-                    if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
-                        hourTime[0] = checkStart[0];
-                        hourTime[0] = checkStart[1];
-                        //Setting the appropriate minute check
-                        minute[0] = startTime.charAt(3) -48;
-                        minute[1] = startTime.charAt(4) - 48;
-                    }
-                    //Sending an error if the time is not in the twelve hour clock
-                    else{
+            else{               
+                //Setting the user entered start time to an array
+                for (int i = 0; i < 4; i ++){
+                    startTimeCheck = startTime.charAt(i);
+                    checkStart[i] = (int)startTimeCheck - 48 ;
+
+                    //Checking that all of the numbers are positive
+                    if (checkStart[i] < 0){
                         //Setting error label to be shown
                         errorLbl1.setVisible(true);
+                        //Sending back that there was an error
                         error = 1;
+                        //Throwing to numberformat issues
+                        throw new NumberFormatException();
+                    }
 
-                        throw new Exception ("Must be a time in the twelve hour clock");
+                    //checking that the time is not a bunch of letters
+                    if(startTime.charAt(i) > 10 || startTime.charAt(i) < 0 ){
+                        errorLbl1.setVisible(true);
+                        error = 1;
+                        throw new NumberFormatException();
                     }
                 }
-            }
-            //Checking if the first digit of the minutes can be used or not
-            if(minute[0] > 5 || minute[0] < 0 || minute[1] < 0){
-                errorLbl1.setVisible(true);
-                error = 1;
+                //Checking if the first number is a 1
+                if(checkStart[0] == 1){
+                    //If the number is a one I want to check if the second one is a colon or another number
+                    if (checkStart[1] == 10){
+                        hourTime[0] = checkStart[0];
+                        //If the number is a colon then I must check a different posisition to check the minute time 
+                        minute[0] = startTime.charAt(2) -48;
+                        minute[1] = startTime.charAt(3) - 48;
+                        //Making sure the user entered a colon
+                        if(startTime.charAt(1) != colon){
+                            error = 1;
+                            errorLbl1.setVisible(true);
 
-                throw new Exception ("Must be a time in the twelve hour clock");
+                            throw new Exception ("Must be a time in the twelve hour clock");
+                        }
+                    }
+                    else {
+                        //If the second number is not a colon then I must check to make sure it is a time that is useable
+                        if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
+                            hourTime[0] = checkStart[0];
+                            hourTime[0] = checkStart[1];
+                            //Setting the appropriate minute check
+                            minute[0] = startTime.charAt(3) -48;
+                            minute[1] = startTime.charAt(4) - 48;
+
+                            //Making sure the user entered a colon
+                            if(startTime.charAt(2) != colon){
+                                error = 1;
+                                errorLbl1.setVisible(true);
+
+                                throw new Exception ("Must be a time in the twelve hour clock");
+                        }
+
+                        }
+                        //Sending an error if the time is not in the twelve hour clock
+                        else{
+                            //Setting error label to be shown
+                            errorLbl1.setVisible(true);
+                            error = 1;
+
+                            throw new Exception ("Must be a time in the twelve hour clock");
+                        }
+                    }
+                }
+                //Checking if the first digit of the minutes can be used or not
+                if(minute[0] > 5 || minute[0] < 0 || minute[1] < 0){
+                    errorLbl1.setVisible(true);
+                    error = 1;
+
+                    throw new Exception ("Must be a time in the twelve hour clock");
+                }
             }
         }
         catch (NumberFormatException nfe){
