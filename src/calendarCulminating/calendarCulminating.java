@@ -908,60 +908,83 @@ public class calendarCulminating extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
     
+    /**
+     * This method checks the start time of the event to see if it is a usable time
+     * @param startTime
+     * @return error
+     */
     public int startTime(String startTime){
+        //Varaibles and arrays
         char startTimeCheck;
         int[] checkStart = new int[4];
         int[] hourTime = new int[2];
+        int[] minute = new int[2];
         int error = 0;
         
-         //Checking start and end time to make sure they are usable times
+        //General try statment to send to a catch to catch errors in user input
         try{
-        for (int i = 0; i < 4; i ++){
-        startTimeCheck = startTime.charAt(i);
-        checkStart[i] = (int)startTimeCheck - 48 ;
-        
-        if (checkStart[i] < 0){
-            //Setting error label to be shown
-            errorLbl1.setVisible(true);
-            error = 1;
+            //Setting the user entered start time to an array
+            for (int i = 0; i < 4; i ++){
+            startTimeCheck = startTime.charAt(i);
+            checkStart[i] = (int)startTimeCheck - 48 ;
             
-            throw new NumberFormatException();
-        }
-        }
-        if(checkStart[0] == 1){
-            if (checkStart[1] == 10){
-                hourTime[0] = checkStart[0];
-               
+            //Checking that all of the numbers are positive
+            if (checkStart[i] < 0){
+                //Setting error label to be shown
+                errorLbl1.setVisible(true);
+                //Sending back that there was an error
+                error = 1;
+                //Throwing to numberformat issues
+                throw new NumberFormatException();
             }
-            else {
-                if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
+            }
+            //Checking if the first number is a 1
+            if(checkStart[0] == 1){
+                //If the number is a one I want to check if the second one is a colon or another number
+                if (checkStart[1] == 10){
                     hourTime[0] = checkStart[0];
-                    hourTime[0] = checkStart[1];
+                    //If the number is a colon then I must check a different posisition to check the minute time 
+                    minute[0] = startTime.charAt(2) -48;
+                    minute[1] = startTime.charAt(3) - 48;
                 }
-                else{
-                    //Setting error label to be shown
-                    errorLbl1.setVisible(true);
-                    error = 1;
-                    
-                    throw new Exception ("Must be a time in the twelve hour clock");
+                else {
+                    //If the second number is not a colon then I must check to make sure it is a time that is useable
+                    if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
+                        hourTime[0] = checkStart[0];
+                        hourTime[0] = checkStart[1];
+                        //Setting the appropriate minute check
+                        minute[0] = startTime.charAt(3) -48;
+                        minute[1] = startTime.charAt(4) - 48;
+                    }
+                    //Sending an error if the time is not in the twelve hour clock
+                    else{
+                        //Setting error label to be shown
+                        errorLbl1.setVisible(true);
+                        error = 1;
+
+                        throw new Exception ("Must be a time in the twelve hour clock");
+                    }
                 }
             }
-        }
+            //Checking if the first digit of the minutes can be used or not
+            if(minute[0] > 5 || minute[0] < 0 || minute[1] < 0){
+                errorLbl1.setVisible(true);
+                error = 1;
+
+                throw new Exception ("Must be a time in the twelve hour clock");
+            }
         }
         catch (NumberFormatException nfe){
             System.err.println("You must use Ints");
             System.err.println("Exception: " + nfe);
             error = 1;
-            
             }
-        
         catch (Exception e){
             System.err.println("Must be a time in the twelve hour clock");
             System.err.println("The time must look something like this: 12:00, 12:31");
             System.err.println("Exception: " + e);
             error = 1;
             }
-        
         return error;
     }
     
