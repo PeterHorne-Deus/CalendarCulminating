@@ -35,8 +35,6 @@ public class calendarCulminating extends javax.swing.JFrame {
     public calendarCulminating() {
         initComponents();
         
-        
-        
         //Stack Overflow
         setSize(screenSize.width, screenSize.height);
         
@@ -884,6 +882,10 @@ public class calendarCulminating extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * The first day text area is clicked and sends the user to a new form where they can edit the first days events
+     * @param evt 
+     */
     private void firstTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstTxtAreaMouseClicked
         //Displaying and resizing the chosen date
         firstJFrame.show();
@@ -895,16 +897,21 @@ public class calendarCulminating extends javax.swing.JFrame {
         monthJFrame.hide();
     }//GEN-LAST:event_firstTxtAreaMouseClicked
 
+    /**
+     * Button on the first day that updates the calendar
+     * @param evt 
+     */
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         //Variables
         String startTimeAmPm = (String)startAmPmCombBox.getSelectedItem();
         String endTimeAmPm = (String)endAmPmCombBox.getSelectedItem();
         String startTime = startTimeTxtFeild.getText();
+        String endTime = endTimeTxtFeild.getText();
         int error = 0;
         
         //Sending to a method to check if the start time is valid
         error = startTime(startTime);
-        
+        error = endTime(endTime);
         
         //If there is an error this shows the error label
         if (error == 1){
@@ -918,6 +925,10 @@ public class calendarCulminating extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
+    /**
+     * The Sign in button that initiates the sign in algorithm
+     * @param evt 
+     */
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
         //Hiding the main sign in screen
         hide();
@@ -944,15 +955,16 @@ public class calendarCulminating extends javax.swing.JFrame {
     public int startTime(String startTime){
         //Varaibles and arrays
         char startTimeCheck;
-        int[] checkStart = new int[4];
-        int[] hourTime = new int[2];
-        int[] minute = new int[2];
         int error = 0;
         char colon = ':';
+        //Arrays
+        int[] checkStart = new int[4];
+        int[] minute = new int[2];
         
         //General try statment to send to a catch to catch errors in user input
         try{
             if(startTime.length() > 5){
+                
                 errorLbl1.setVisible(true);
                 error = 1;
                 throw new NumberFormatException();
@@ -963,18 +975,10 @@ public class calendarCulminating extends javax.swing.JFrame {
                     startTimeCheck = startTime.charAt(i);
                     checkStart[i] = (int)startTimeCheck - 48 ;
 
-                    //Checking that all of the numbers are positive
-                    if (checkStart[i] < 0){
-                        //Setting error label to be shown
-                        errorLbl1.setVisible(true);
-                        //Sending back that there was an error
-                        error = 1;
-                        //Throwing to numberformat issues
-                        throw new NumberFormatException();
-                    }
-
+                    
                     //checking that the time is not a bunch of letters
-                    if(startTime.charAt(i) > 10 || startTime.charAt(i) < 0 ){
+                    if(checkStart[i] > 10 || checkStart[i] < 0){
+                        //Output Error
                         errorLbl1.setVisible(true);
                         error = 1;
                         throw new NumberFormatException();
@@ -984,7 +988,7 @@ public class calendarCulminating extends javax.swing.JFrame {
                 if(checkStart[0] == 1){
                     //If the number is a one I want to check if the second one is a colon or another number
                     if (checkStart[1] == 10){
-                        hourTime[0] = checkStart[0];
+                       
                         //If the number is a colon then I must check a different posisition to check the minute time 
                         minute[0] = startTime.charAt(2) -48;
                         minute[1] = startTime.charAt(3) - 48;
@@ -999,14 +1003,118 @@ public class calendarCulminating extends javax.swing.JFrame {
                     else {
                         //If the second number is not a colon then I must check to make sure it is a time that is useable
                         if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
-                            hourTime[0] = checkStart[0];
-                            hourTime[0] = checkStart[1];
+                            
+                            
                             //Setting the appropriate minute check
                             minute[0] = startTime.charAt(3) -48;
                             minute[1] = startTime.charAt(4) - 48;
 
                             //Making sure the user entered a colon
                             if(startTime.charAt(2) != colon){
+                                error = 1;
+                                errorLbl1.setVisible(true);
+
+                                throw new Exception ("Must be a time in the twelve hour clock");
+                            }
+
+                        }
+                        //Sending an error if the time is not in the twelve hour clock
+                        else{
+                            //Setting error label to be shown
+                            errorLbl1.setVisible(true);
+                            error = 1;
+
+                            throw new Exception ("Must be a time in the twelve hour clock");
+                        }
+                    }
+                }
+                //Checking if the first digit of the minutes can be used or not
+                if(minute[0] > 5 || minute[0] < 0 || minute[1] < 0){
+                    errorLbl1.setVisible(true);
+                    error = 1;
+
+                    throw new Exception ("Must be a time in the twelve hour clock");
+                }
+            }
+        }
+        catch (NumberFormatException nfe){
+            System.err.println("You must use Ints");
+            System.err.println("Exception: " + nfe);
+            error = 1;
+            }
+        catch (Exception e){
+            System.err.println("Must be a time in the twelve hour clock");
+            System.err.println("The time must look something like this: 12:00, 12:31");
+            System.err.println("Exception: " + e);
+            error = 1;
+            }
+        return error;
+    }
+    
+    /**
+     * This is a method to check that the end time entered is a valid time
+     * @param endTime
+     * @return error
+     */
+    public int endTime (String endTime){
+        //Varaibles and arrays
+        char endTimeCheck;
+        int error = 0;
+        char colon = ':';
+        //Arrays
+        int[] checkEnd = new int[4];
+        int[] minute = new int[2];
+        
+        //General try statment to send to a catch to catch errors in user input
+        try{
+            if(endTime.length() > 5){
+                
+                errorLbl1.setVisible(true);
+                error = 1;
+                throw new NumberFormatException();
+            }
+            else{               
+                //Setting the user entered start time to an array
+                for (int i = 0; i < 4; i ++){
+                    endTimeCheck = endTime.charAt(i);
+                    checkEnd[i] = (int)endTimeCheck - 48 ;
+
+                    
+                    //checking that the time is not a bunch of letters
+                    if(checkEnd[i] > 10 || checkEnd[i] < 0){
+                        //Output Error
+                        errorLbl1.setVisible(true);
+                        error = 1;
+                        throw new NumberFormatException();
+                    }
+                }
+                //Checking if the first number is a 1
+                if(checkEnd[0] == 1){
+                    //If the number is a one I want to check if the second one is a colon or another number
+                    if (checkEnd[1] == 10){
+                       
+                        //If the number is a colon then I must check a different posisition to check the minute time 
+                        minute[0] = endTime.charAt(2) -48;
+                        minute[1] = endTime.charAt(3) - 48;
+                        //Making sure the user entered a colon
+                        if(endTime.charAt(1) != colon){
+                            error = 1;
+                            errorLbl1.setVisible(true);
+
+                            throw new Exception ("Must be a time in the twelve hour clock");
+                        }
+                    }
+                    else {
+                        //If the second number is not a colon then I must check to make sure it is a time that is useable
+                        if (checkEnd[1] == 0 ||checkEnd[1] == 1 ||checkEnd[1] == 2){
+                            
+                            
+                            //Setting the appropriate minute check
+                            minute[0] = endTime.charAt(3) -48;
+                            minute[1] = endTime.charAt(4) - 48;
+
+                            //Making sure the user entered a colon
+                            if(endTime.charAt(2) != colon){
                                 error = 1;
                                 errorLbl1.setVisible(true);
 
@@ -1046,6 +1154,7 @@ public class calendarCulminating extends javax.swing.JFrame {
             }
         return error;
     }
+    
     
     /**
      * @param args the command line arguments
