@@ -1172,12 +1172,16 @@ public class calendarCulminating extends javax.swing.JFrame {
     public int checkTimes(String startTime, String endTime, String startTimeAmPm, String endTimeAmPm){
         //Variables
         int error = 0;
+        int startMinute;
+        int endMinute;
+        int startHour = 0;
+        int endHour = 0;
         
         //Arrays
         int[] start = new int[5];
         int[] end = new int[5];
-         
-        
+        int[] startMinutes = new int[2];
+        int[] endMinutes = new int[2];
         
         try{
             for (int i = 0 ; i < startTime.length(); i ++){
@@ -1189,15 +1193,46 @@ public class calendarCulminating extends javax.swing.JFrame {
                     
             }
             
-            if(start[0] > end[0] && startTimeAmPm == "AM" && endTimeAmPm == "AM" || startTimeAmPm == "PM" && endTimeAmPm == "PM"){
+            if(startTime.length() == 4){
+                startMinutes[0] = start[2] + 1;
+                startMinutes[1] = start[3] + 1;
+                
+                endMinutes[0] = end[2] + 1;
+                endMinutes[1] = end[3] + 1;
+                
+                startHour = start[0];
+                endHour = end[0];
+            }
+            else if(startTime.length() == 5){
+                startMinutes[0] = start[3] + 1;
+                startMinutes[1] = start[4] + 1;
+                
+                endMinutes[0] = end[3] + 1;
+                endMinutes[1] = end[4] + 1;  
+                
+                startHour = 10 + start[1];
+                endHour = 10 + end[1];
+            }
+            
+            endMinute = endMinutes[0] + endMinutes[1];
+            startMinute = startMinutes[0] + startMinutes[1];
+            
+            if (startTimeAmPm == "PM" && endTimeAmPm == "AM"){
                 error = 1;
             }
-            else{
-                
+            
+            if(startHour > endHour && startTimeAmPm == "AM" && endTimeAmPm == "AM" || startTimeAmPm == "PM" && endTimeAmPm == "PM" ){
+                error = 1;
             }
             
-            
-            
+            if(startHour == endHour){
+                if (startMinute > endMinute){
+                    error = 1;
+                } 
+            }
+            if (startTimeAmPm == "AM" && endTimeAmPm == "PM"){
+                error = 0;
+            }
         }
         catch (NumberFormatException nfe){
             System.err.println("You must use Ints");
@@ -1210,8 +1245,6 @@ public class calendarCulminating extends javax.swing.JFrame {
             System.err.println("Exception: " + e);
             error = 1;
             }
-        
-        
         
         return error;
     }
