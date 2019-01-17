@@ -40,6 +40,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         
         //Setting error labels to be hidden
         errorLbl1.setVisible(false);
+        errorLbl2.setVisible(false);
         
     }
 
@@ -128,6 +129,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         endAmPmCombBox = new javax.swing.JComboBox();
         startAmPmCombBox = new javax.swing.JComboBox();
         errorLbl1 = new javax.swing.JLabel();
+        errorLbl2 = new javax.swing.JLabel();
         secondJFrame = new javax.swing.JFrame();
         thirdJFrame = new javax.swing.JFrame();
         fourthJFrame = new javax.swing.JFrame();
@@ -501,6 +503,11 @@ public class calendarCulminating extends javax.swing.JFrame {
         errorLbl1.setForeground(new java.awt.Color(255, 0, 0));
         errorLbl1.setText("Time Error Must be an INT and in the twelve hour clock");
         backgroundPanel.add(errorLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        errorLbl2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        errorLbl2.setForeground(new java.awt.Color(255, 0, 0));
+        errorLbl2.setText("Make sure your start time is later then your end time");
+        backgroundPanel.add(errorLbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         javax.swing.GroupLayout firstJFrameLayout = new javax.swing.GroupLayout(firstJFrame.getContentPane());
         firstJFrame.getContentPane().setLayout(firstJFrameLayout);
@@ -907,22 +914,30 @@ public class calendarCulminating extends javax.swing.JFrame {
         String endTimeAmPm = (String)endAmPmCombBox.getSelectedItem();
         String startTime = startTimeTxtFeild.getText();
         String endTime = endTimeTxtFeild.getText();
-        int error = 0;
+        int errorStart = 0;
+        int errorEnd = 0;
+        int errorTiming = 0;
         
         //Sending to a method to check if the start time is valid
-        error = startTime(startTime);
-        error = endTime(endTime);
+        errorStart = startTime(startTime);
+        errorEnd = endTime(endTime);
+        errorTiming = checkTimes(startTime,endTime,startTimeAmPm,endTimeAmPm);
         
         //If there is an error this shows the error label
-        if (error == 1){
+        if (errorStart == 1 || errorEnd == 1){
            errorLbl1.setVisible(true); 
         }
-        //Hiding the day and showing the month only if there are no errors
-        else if (error != 1){
-        monthJFrame.show();
-        firstJFrame.hide();
-        errorLbl1.setVisible(false);
+        else if(errorTiming == 1){
+            errorLbl2.setVisible(true);
         }
+        //Hiding the day and showing the month only if there are no errors
+        else if (errorStart != 1 || errorEnd != 1 || errorTiming != 1){
+            monthJFrame.show();
+            firstJFrame.hide();
+            errorLbl1.setVisible(false);
+            errorLbl2.setVisible(false);
+        }
+                
     }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
@@ -1001,9 +1016,9 @@ public class calendarCulminating extends javax.swing.JFrame {
                         }
                     }
                     else {
+                        
                         //If the second number is not a colon then I must check to make sure it is a time that is useable
                         if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
-                            
                             
                             //Setting the appropriate minute check
                             minute[0] = startTime.charAt(3) -48;
@@ -1018,7 +1033,6 @@ public class calendarCulminating extends javax.swing.JFrame {
                             }
 
                         }
-                        //Sending an error if the time is not in the twelve hour clock
                         else{
                             //Setting error label to be shown
                             errorLbl1.setVisible(true);
@@ -1155,6 +1169,52 @@ public class calendarCulminating extends javax.swing.JFrame {
         return error;
     }
     
+    public int checkTimes(String startTime, String endTime, String startTimeAmPm, String endTimeAmPm){
+        //Variables
+        int error = 0;
+        
+        //Arrays
+        int[] start = new int[5];
+        int[] end = new int[5];
+         
+        
+        
+        try{
+            for (int i = 0 ; i < startTime.length(); i ++){
+                    start[i] = (int)startTime.charAt(i) - 48;
+                    
+            }
+            for (int i = 0 ; i < endTime.length(); i ++){
+                    end[i] = (int)endTime.charAt(i) - 48;
+                    
+            }
+            
+            if(start[0] > end[0] && startTimeAmPm == "AM" && endTimeAmPm == "AM" || startTimeAmPm == "PM" && endTimeAmPm == "PM"){
+                error = 1;
+            }
+            else{
+                
+            }
+            
+            
+            
+        }
+        catch (NumberFormatException nfe){
+            System.err.println("You must use Ints");
+            System.err.println("Exception: " + nfe);
+            error = 1;
+            }
+        catch (Exception e){
+            System.err.println("Must be a time in the twelve hour clock");
+            System.err.println("The time must look something like this: 12:00, 12:31");
+            System.err.println("Exception: " + e);
+            error = 1;
+            }
+        
+        
+        
+        return error;
+    }
     
     /**
      * @param args the command line arguments
@@ -1210,6 +1270,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JLabel endTimeLbl;
     private javax.swing.JTextField endTimeTxtFeild;
     private javax.swing.JLabel errorLbl1;
+    private javax.swing.JLabel errorLbl2;
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel febuaryLbl;
     private javax.swing.JFrame fifteenthJFrame;
