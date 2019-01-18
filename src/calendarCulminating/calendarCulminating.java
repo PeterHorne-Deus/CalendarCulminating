@@ -26,6 +26,8 @@ public class calendarCulminating extends javax.swing.JFrame {
     
     //Public Variables
     String activities;
+    String allDay = "";
+    
     
     //Stack overflow
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -123,7 +125,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         endTimeTxtFeild = new javax.swing.JTextField();
         activityLbl = new javax.swing.JLabel();
         endTimeLbl = new javax.swing.JLabel();
-        activivityTxtFeild = new javax.swing.JTextField();
+        activityTxtFeild = new javax.swing.JTextField();
         startTimeLbl = new javax.swing.JLabel();
         startTimeTxtFeild = new javax.swing.JTextField();
         endAmPmCombBox = new javax.swing.JComboBox();
@@ -486,7 +488,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         endTimeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         endTimeLbl.setText("End Time:");
         backgroundPanel.add(endTimeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
-        backgroundPanel.add(activivityTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 160, -1));
+        backgroundPanel.add(activityTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 160, -1));
 
         startTimeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         startTimeLbl.setText("Start Time:");
@@ -502,7 +504,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         errorLbl1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         errorLbl1.setForeground(new java.awt.Color(255, 0, 0));
         errorLbl1.setText("Time Error Must be an INT and in the twelve hour clock");
-        backgroundPanel.add(errorLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        backgroundPanel.add(errorLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         errorLbl2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         errorLbl2.setForeground(new java.awt.Color(255, 0, 0));
@@ -517,7 +519,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         );
         firstJFrameLayout.setVerticalGroup(
             firstJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout secondJFrameLayout = new javax.swing.GroupLayout(secondJFrame.getContentPane());
@@ -914,14 +916,16 @@ public class calendarCulminating extends javax.swing.JFrame {
         String endTimeAmPm = (String)endAmPmCombBox.getSelectedItem();
         String startTime = startTimeTxtFeild.getText();
         String endTime = endTimeTxtFeild.getText();
+        String time = startTime +startTimeAmPm + "-" + endTime + endTimeAmPm +" ";
         int errorStart = 0;
         int errorEnd = 0;
         int errorTiming = 0;
-        
+       
         //Sending to a method to check if the start time is valid
         errorStart = startTime(startTime);
         errorEnd = endTime(endTime);
         errorTiming = checkTimes(startTime,endTime,startTimeAmPm,endTimeAmPm);
+        activity(time,errorStart,errorEnd,errorTiming);
         
         //If there is an error this shows the error label
         if (errorStart == 1 || errorEnd == 1){
@@ -1195,23 +1199,36 @@ public class calendarCulminating extends javax.swing.JFrame {
             
             if(startTime.length() == 4){
                 startMinutes[0] = start[2] + 1;
-                startMinutes[1] = start[3] + 1;
-                
-                endMinutes[0] = end[2] + 1;
-                endMinutes[1] = end[3] + 1;
-                
+                startMinutes[1] = start[3] + 1;                
                 startHour = start[0];
-                endHour = end[0];
             }
             else if(startTime.length() == 5){
                 startMinutes[0] = start[3] + 1;
                 startMinutes[1] = start[4] + 1;
                 
-                endMinutes[0] = end[3] + 1;
-                endMinutes[1] = end[4] + 1;  
+                if(start[1] == 2){
+                    startHour = 0;
+                }
+                else{
+                    startHour = 10 + start[1];     
+                }
+            }
+            if(endTime.length() == 4){
+                endMinutes[0] = end[2] + 1;
+                endMinutes[1] = end[3] + 1;
                 
-                startHour = 10 + start[1];
-                endHour = 10 + end[1];
+                endHour = end[0];
+            }
+            else if(endTime.length() == 5){
+                endMinutes[0] = end[3] + 1;
+                endMinutes[1] = end[4] + 1; 
+                
+                if(end[1] == 2){
+                    endHour = 0;
+                }
+                else{
+                    endHour = 10 + end[1];     
+                }
             }
             
             endMinute = endMinutes[0] + endMinutes[1];
@@ -1221,16 +1238,19 @@ public class calendarCulminating extends javax.swing.JFrame {
                 error = 1;
             }
             
-            if(startHour > endHour && startTimeAmPm == "AM" && endTimeAmPm == "AM" || startTimeAmPm == "PM" && endTimeAmPm == "PM" ){
+            else if(startHour > endHour && startTimeAmPm == "AM" && endTimeAmPm == "AM" ){
                 error = 1;
             }
             
-            if(startHour == endHour){
+            else if(startHour > endHour && startTimeAmPm == "PM" && endTimeAmPm == "PM"){
+                error = 1;
+            }
+            else if(startHour == endHour){
                 if (startMinute > endMinute){
                     error = 1;
                 } 
             }
-            if (startTimeAmPm == "AM" && endTimeAmPm == "PM"){
+            else if (startTimeAmPm == "AM" && endTimeAmPm == "PM"){
                 error = 0;
             }
         }
@@ -1249,6 +1269,20 @@ public class calendarCulminating extends javax.swing.JFrame {
         return error;
     }
     
+    public void activity(String time,int errorStart,int errorEnd,int errorTiming){
+        String activity = activityTxtFeild.getText();
+                
+        if(errorStart != 1 && errorEnd != 1 && errorTiming != 1){
+            allDay = allDay  + time + ":\n" + activity + "\n";
+            
+            allDay = allDay + "\n";
+        
+        firstTxtArea.setLineWrap(true);
+        firstTxtArea.setWrapStyleWord(true);
+        firstTxtArea.setText("1st \n" +allDay );
+        
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -1286,7 +1320,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityLbl;
-    private javax.swing.JTextField activivityTxtFeild;
+    private javax.swing.JTextField activityTxtFeild;
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton createAccountBtn;
     private javax.swing.JLabel dateLbl;
