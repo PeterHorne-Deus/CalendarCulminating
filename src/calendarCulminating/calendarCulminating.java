@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.*;
-
+import java.io.*;
 
 
 /**
@@ -138,16 +138,16 @@ public class calendarCulminating extends javax.swing.JFrame {
         signInPasswordTxtFeild = new javax.swing.JTextField();
         signUpReEnterPasswordLbl = new javax.swing.JLabel();
         signUpUsernameLbl = new javax.swing.JLabel();
-        signUpReEnterPasswordTxtFeild = new javax.swing.JTextField();
         signInLbl = new javax.swing.JLabel();
         signInUsernameLbl = new javax.swing.JLabel();
         signInUsernameTxtFeild = new javax.swing.JTextField();
-        signUpUsernameTxtFeild = new javax.swing.JTextField();
-        signUpPasswordTxtFeild = new javax.swing.JTextField();
         signInPasswordLbl = new javax.swing.JLabel();
         signUpPasswordLbl = new javax.swing.JLabel();
         createAccountBtn = new javax.swing.JButton();
         signInBtn = new javax.swing.JButton();
+        signUpUsernameTxtFeild = new javax.swing.JTextField();
+        signUpPasswordTxtFeild = new javax.swing.JTextField();
+        signUpReEnterPasswordTxtFeild = new javax.swing.JTextField();
 
         monthBackgroundPnl.setBackground(new java.awt.Color(204, 255, 255));
         monthBackgroundPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -644,7 +644,6 @@ public class calendarCulminating extends javax.swing.JFrame {
         signUpUsernameLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpUsernameLbl.setText("Username:");
         signInBackgroundPnl.add(signUpUsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-        signInBackgroundPnl.add(signUpReEnterPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 170, 30));
 
         signInLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signInLbl.setText("Sign In:");
@@ -654,8 +653,6 @@ public class calendarCulminating extends javax.swing.JFrame {
         signInUsernameLbl.setText("Username:");
         signInBackgroundPnl.add(signInUsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
         signInBackgroundPnl.add(signInUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 170, 30));
-        signInBackgroundPnl.add(signUpUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 30));
-        signInBackgroundPnl.add(signUpPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 170, 30));
 
         signInPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signInPasswordLbl.setText("Password:");
@@ -667,6 +664,11 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         createAccountBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         createAccountBtn.setText("Create Account");
+        createAccountBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createAccountBtnActionPerformed(evt);
+            }
+        });
         signInBackgroundPnl.add(createAccountBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
 
         signInBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -677,6 +679,30 @@ public class calendarCulminating extends javax.swing.JFrame {
             }
         });
         signInBackgroundPnl.add(signInBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
+
+        signUpUsernameTxtFeild.setText(" ");
+        signUpUsernameTxtFeild.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signUpUsernameTxtFeildMouseClicked(evt);
+            }
+        });
+        signInBackgroundPnl.add(signUpUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 30));
+
+        signUpPasswordTxtFeild.setText(" ");
+        signUpPasswordTxtFeild.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signUpPasswordTxtFeildMouseClicked(evt);
+            }
+        });
+        signInBackgroundPnl.add(signUpPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 170, 30));
+
+        signUpReEnterPasswordTxtFeild.setText(" ");
+        signUpReEnterPasswordTxtFeild.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                signUpReEnterPasswordTxtFeildMouseClicked(evt);
+            }
+        });
+        signInBackgroundPnl.add(signUpReEnterPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -691,7 +717,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 345, Short.MAX_VALUE)
+            .addGap(0, 354, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(1, 1, 1)
@@ -775,17 +801,94 @@ public class calendarCulminating extends javax.swing.JFrame {
      * @param evt 
      */
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
-        //Hiding the main sign in screen
-        hide();
+        //Variables
+        File dataFile = new File("signIn.dat");
+        FileReader in;
+        BufferedReader readFile;
         
-        //Displaying and resizing the chosen date
-        monthJFrame.show();
+        String username = signInUsernameTxtFeild.getText();
+        String password = signInPasswordTxtFeild.getText();
+        String passwordPulled;
+        String usernamePulled;
+        int error = 0;
+        int passwordCheck = 0;
+        int usernameCheck = 0;
         
-        //Came From Stack Overflow
-        monthJFrame.setSize(screenSize.width, screenSize.height);
+        try{
+            in = new FileReader(dataFile);
+            readFile = new BufferedReader(in);
+            
+            usernamePulled = readFile.readLine();
+            passwordPulled = readFile.readLine();
+            
+            
+            if(username.charAt(0) != ' ' && password.charAt(0) != ' '){
+                while (passwordCheck < password.length()) {
+
+                    System.out.println("test");
+                    if (password.charAt(passwordCheck) != passwordPulled.charAt(passwordCheck)) {
+                        error = 2;
+                        throw new Exception("Error");
+                    }
+                    passwordCheck++;
+                }
+                while (usernameCheck < username.length()) {
+
+                    if (username.charAt(usernameCheck) != usernamePulled.charAt(usernameCheck)) {
+                        error = 1;
+                        throw new Exception("Error");
+                    }
+                    usernameCheck++;
+                }
+                
+                }
+            else{
+
+                error = 1;
+                throw new Exception("Error");
+            }
+            
+            if(username.length() != usernamePulled.length() || password.length() != passwordPulled.length()){
+                error = 1;
+                throw new Exception("Error");
+            }
+            
+            if (error == 0){
+                //Hiding the main sign in screen
+                hide();
+
+                //Displaying and resizing the chosen date
+                monthJFrame.show();
+
+                //Came From Stack Overflow
+                monthJFrame.setSize(screenSize.width, screenSize.height);
+
+                //Colouring exit button
+                exitBtn.setBackground(Color.black);
+
+            }
+            readFile.close();
+            in.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File does not exist or could not be found.");
+            System.err.println("FileNotFoundException: " + e.getMessage());
+        } 
+        catch (IOException e) {
+            System.out.println("Problem reading file.");
+            System.err.println("IOException: " + e.getMessage());
+    	}
+        catch (Exception e){
+            if (error == 1){
+                System.err.println("You must enter a username that is the same as your account created");
+                System.err.println("Exception: " + e);
+            }
+            else if (error == 2){
+                System.err.println("You must enter the same password as the one you created");
+                System.err.println("Exception: " + e);
+            }
+            }
         
-        //Colouring exit button
-        exitBtn.setBackground(Color.black);
     }//GEN-LAST:event_signInBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
@@ -1250,6 +1353,95 @@ public class calendarCulminating extends javax.swing.JFrame {
         //Setting Day Text
         dateLbl.setText("Febuary " + day + ",2015");
     }//GEN-LAST:event_twentyEighthTxtAreaMouseClicked
+
+    private void createAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountBtnActionPerformed
+        //Filewriter
+        File dataFile = new File("signIn.dat");
+        FileWriter out;
+        BufferedWriter writeFile;
+        //Variables
+        String username = signUpUsernameTxtFeild.getText();
+        String password = signUpPasswordTxtFeild.getText();
+        String passwordReenterd = signUpReEnterPasswordTxtFeild.getText();
+        int error = 0;
+        
+        try{
+            out = new FileWriter(dataFile);
+            writeFile = new BufferedWriter(out);               
+                
+            if(username.charAt(0) != ' ' && password.charAt(0) != ' '&& passwordReenterd.charAt(0) != ' '){
+                if(password.length() != passwordReenterd.length()){
+                    error = 2;
+                    throw new Exception("Error");
+                }
+                for(int i = 0; i >= password.length() - 1; i++){
+                    if(password.charAt(i) != passwordReenterd.charAt(i)){
+                      error = 2;
+                      throw new Exception("Error");  
+                    }
+                }
+                
+            }
+            else{
+                
+                error = 1;
+                throw new Exception("Error");
+            }
+            
+            if (error == 0){
+                writeFile.write(username);
+                writeFile.newLine();
+                writeFile.write(password);
+                
+                //Hiding the main sign in screen
+                 hide();
+        
+                //Displaying and resizing the chosen date
+                monthJFrame.show();
+
+                //Came From Stack Overflow
+                monthJFrame.setSize(screenSize.width, screenSize.height);
+
+                //Colouring exit button
+                exitBtn.setBackground(Color.black);
+            
+            }
+            writeFile.close();
+            out.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File does not exist or could not be found.");
+            System.err.println("FileNotFoundException: " + e.getMessage());
+        } 
+        catch (IOException e) {
+            System.out.println("Problem reading file.");
+            System.err.println("IOException: " + e.getMessage());
+    	}
+        catch (Exception e){
+            if (error == 1){
+                System.err.println("You must enter a user name and password");
+                System.err.println("Exception: " + e);
+            }
+            else if (error == 2){
+                System.err.println("You must enter the same password");
+                System.err.println("Exception: " + e);
+            }
+            }
+        
+        
+    }//GEN-LAST:event_createAccountBtnActionPerformed
+
+    private void signUpUsernameTxtFeildMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpUsernameTxtFeildMouseClicked
+        signUpUsernameTxtFeild.setText("");
+    }//GEN-LAST:event_signUpUsernameTxtFeildMouseClicked
+
+    private void signUpPasswordTxtFeildMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpPasswordTxtFeildMouseClicked
+        signUpPasswordTxtFeild.setText("");
+    }//GEN-LAST:event_signUpPasswordTxtFeildMouseClicked
+
+    private void signUpReEnterPasswordTxtFeildMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpReEnterPasswordTxtFeildMouseClicked
+        signUpReEnterPasswordTxtFeild.setText("");
+    }//GEN-LAST:event_signUpReEnterPasswordTxtFeildMouseClicked
     
     /**
      * This method checks the start time of the event to see if it is a usable time
