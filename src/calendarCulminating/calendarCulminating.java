@@ -29,6 +29,8 @@ public class calendarCulminating extends javax.swing.JFrame {
     String[] allDay = new String[28];
     int day;
     int[] timesThrough = new int[28];
+    String account = "";
+    String accountName = "";
     
     //Stack overflow
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,6 +47,8 @@ public class calendarCulminating extends javax.swing.JFrame {
         errorLbl1.setVisible(false);
         errorLbl2.setVisible(false);
         
+        //Calling account method
+        accounts();
     }
 
     @SuppressWarnings("unchecked")
@@ -135,7 +139,6 @@ public class calendarCulminating extends javax.swing.JFrame {
         errorLbl2 = new javax.swing.JLabel();
         signInBackgroundPnl = new javax.swing.JPanel();
         signUpLbl = new javax.swing.JLabel();
-        signInPasswordTxtFeild = new javax.swing.JTextField();
         signUpReEnterPasswordLbl = new javax.swing.JLabel();
         signUpUsernameLbl = new javax.swing.JLabel();
         signInLbl = new javax.swing.JLabel();
@@ -146,8 +149,11 @@ public class calendarCulminating extends javax.swing.JFrame {
         createAccountBtn = new javax.swing.JButton();
         signInBtn = new javax.swing.JButton();
         signUpUsernameTxtFeild = new javax.swing.JTextField();
-        signUpPasswordTxtFeild = new javax.swing.JTextField();
-        signUpReEnterPasswordTxtFeild = new javax.swing.JTextField();
+        signInErrorLbl = new javax.swing.JLabel();
+        signinErrorLbl2 = new javax.swing.JLabel();
+        signUpPasswordTxtFeild = new javax.swing.JPasswordField();
+        signUpReEnterPasswordTxtFeild = new javax.swing.JPasswordField();
+        signInPasswordTxtFeild = new javax.swing.JPasswordField();
 
         monthBackgroundPnl.setBackground(new java.awt.Color(204, 255, 255));
         monthBackgroundPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -567,7 +573,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         monthJFrame.getContentPane().setLayout(monthJFrameLayout);
         monthJFrameLayout.setHorizontalGroup(
             monthJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 1363, Short.MAX_VALUE)
+            .addComponent(monthBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         monthJFrameLayout.setVerticalGroup(
             monthJFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,7 +641,6 @@ public class calendarCulminating extends javax.swing.JFrame {
         signUpLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpLbl.setText("Sign Up:");
         signInBackgroundPnl.add(signUpLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
-        signInBackgroundPnl.add(signInPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 170, 30));
 
         signUpReEnterPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpReEnterPasswordLbl.setText("Re-enter Password:");
@@ -656,7 +661,7 @@ public class calendarCulminating extends javax.swing.JFrame {
 
         signInPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signInPasswordLbl.setText("Password:");
-        signInBackgroundPnl.add(signInPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        signInBackgroundPnl.add(signInPasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         signUpPasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         signUpPasswordLbl.setText("Password:");
@@ -688,6 +693,14 @@ public class calendarCulminating extends javax.swing.JFrame {
         });
         signInBackgroundPnl.add(signUpUsernameTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 30));
 
+        signInErrorLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        signInErrorLbl.setForeground(new java.awt.Color(255, 0, 0));
+        signInBackgroundPnl.add(signInErrorLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 460, 20));
+
+        signinErrorLbl2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        signinErrorLbl2.setForeground(new java.awt.Color(255, 0, 51));
+        signInBackgroundPnl.add(signinErrorLbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 220, 20));
+
         signUpPasswordTxtFeild.setText(" ");
         signUpPasswordTxtFeild.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -704,25 +717,28 @@ public class calendarCulminating extends javax.swing.JFrame {
         });
         signInBackgroundPnl.add(signUpReEnterPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 170, 30));
 
+        signInPasswordTxtFeild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInPasswordTxtFeildActionPerformed(evt);
+            }
+        });
+        signInBackgroundPnl.add(signInPasswordTxtFeild, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 170, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1330, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(393, 393, 393)
-                    .addComponent(signInBackgroundPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(393, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(393, 393, 393)
+                .addComponent(signInBackgroundPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(393, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 354, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(1, 1, 1)
-                    .addComponent(signInBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(2, 2, 2)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(signInBackgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
         );
 
         pack();
@@ -862,7 +878,10 @@ public class calendarCulminating extends javax.swing.JFrame {
 
                 //Came From Stack Overflow
                 monthJFrame.setSize(screenSize.width, screenSize.height);
-
+                
+                //Putting a name to the title
+                titleLbl.setText(accountName + "'s Calendar" );
+                
                 //Colouring exit button
                 exitBtn.setBackground(Color.black);
 
@@ -1366,48 +1385,69 @@ public class calendarCulminating extends javax.swing.JFrame {
         int error = 0;
         
         try{
-            out = new FileWriter(dataFile);
-            writeFile = new BufferedWriter(out);               
-                
-            if(username.charAt(0) != ' ' && password.charAt(0) != ' '&& passwordReenterd.charAt(0) != ' '){
-                if(password.length() != passwordReenterd.length()){
-                    error = 2;
-                    throw new Exception("Error");
-                }
-                for(int i = 0; i >= password.length() - 1; i++){
-                    if(password.charAt(i) != passwordReenterd.charAt(i)){
-                      error = 2;
-                      throw new Exception("Error");  
-                    }
-                }
-                
+            if(account.equals("1")){
+                error = 3;
+                throw new Exception("Error");    
             }
             else{
-                
-                error = 1;
-                throw new Exception("Error");
-            }
-            
-            if (error == 0){
-                writeFile.write(username);
+                out = new FileWriter(dataFile);
+                writeFile = new BufferedWriter(out);              
+
+                if(username.charAt(0) != ' ' && password.charAt(0) != ' ' && passwordReenterd.charAt(0) != ' '){
+                    if(password.length() != passwordReenterd.length()){
+                        error = 2;
+                        throw new Exception("Error");
+                    }
+
+                    if(password.equals(passwordReenterd)){ 
+                        System.out.println("Yes");
+                    }
+                    else{
+                        error = 2;
+                        throw new Exception("Error");  
+                    }
+
+
+                }
+                else{
+                    error = 1;
+                    throw new Exception("Error");
+                }
+
+                if (error == 0){
+                    writeFile.write(username);
+                    writeFile.newLine();
+                    writeFile.write(password);
+                    writeFile.newLine();
+                    writeFile.write("1");
+                    
+                    //Hiding the main sign in screen
+                     hide();
+
+                    //Displaying and resizing the chosen date
+                    monthJFrame.show();
+
+                    //Came From Stack Overflow
+                    monthJFrame.setSize(screenSize.width, screenSize.height);
+                    
+                    //Putting a name to the title
+                    titleLbl.setText(accountName + "'s Calendar" );
+                    
+                    //Colouring exit button
+                    exitBtn.setBackground(Color.black);
+                    
+                }
+                else{
                 writeFile.newLine();
-                writeFile.write(password);
-                
-                //Hiding the main sign in screen
-                 hide();
-        
-                //Displaying and resizing the chosen date
-                monthJFrame.show();
+                writeFile.newLine();
+                writeFile.newLine();
+                writeFile.write("0");
+                }
 
-                //Came From Stack Overflow
-                monthJFrame.setSize(screenSize.width, screenSize.height);
-
-                //Colouring exit button
-                exitBtn.setBackground(Color.black);
-            
+                writeFile.close();
+                out.close();  
             }
-            writeFile.close();
-            out.close();
+            
         }
         catch (FileNotFoundException e) {
             System.out.println("File does not exist or could not be found.");
@@ -1421,10 +1461,17 @@ public class calendarCulminating extends javax.swing.JFrame {
             if (error == 1){
                 System.err.println("You must enter a user name and password");
                 System.err.println("Exception: " + e);
+                signinErrorLbl2.setText("You must enter a user name and password");
             }
-            else if (error == 2){
+            if (error == 2){
                 System.err.println("You must enter the same password");
                 System.err.println("Exception: " + e);
+                signInErrorLbl.setText("You must enter the same password");
+            }
+            else if (error == 3){
+                System.err.println("You already have an account");
+                System.err.println("Exception: " + e);
+                signInErrorLbl.setText("You already have an account");
             }
             }
         
@@ -1442,6 +1489,10 @@ public class calendarCulminating extends javax.swing.JFrame {
     private void signUpReEnterPasswordTxtFeildMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpReEnterPasswordTxtFeildMouseClicked
         signUpReEnterPasswordTxtFeild.setText("");
     }//GEN-LAST:event_signUpReEnterPasswordTxtFeildMouseClicked
+
+    private void signInPasswordTxtFeildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInPasswordTxtFeildActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signInPasswordTxtFeildActionPerformed
     
     /**
      * This method checks the start time of the event to see if it is a usable time
@@ -1936,6 +1987,32 @@ public class calendarCulminating extends javax.swing.JFrame {
         }
     }
     
+    public void accounts(){
+        File dataFile = new File("signIn.dat");
+        FileReader in;
+        BufferedReader readFile;
+        
+        try{
+            in = new FileReader(dataFile);
+            readFile = new BufferedReader(in);
+            
+            accountName = readFile.readLine();
+            readFile.readLine();
+            account = readFile.readLine();
+            
+            in.close();
+            readFile.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File does not exist or could not be found.");
+            System.err.println("FileNotFoundException: " + e.getMessage());
+        } 
+        catch (IOException e) {
+            System.out.println("Problem reading file.");
+            System.err.println("IOException: " + e.getMessage());
+    	}
+        
+    }
    
     /**
      * @param args the command line arguments
@@ -2019,18 +2096,20 @@ public class calendarCulminating extends javax.swing.JFrame {
     private javax.swing.JTextArea seventhTxtArea;
     private javax.swing.JPanel signInBackgroundPnl;
     private javax.swing.JButton signInBtn;
+    private javax.swing.JLabel signInErrorLbl;
     private javax.swing.JLabel signInLbl;
     private javax.swing.JLabel signInPasswordLbl;
-    private javax.swing.JTextField signInPasswordTxtFeild;
+    private javax.swing.JPasswordField signInPasswordTxtFeild;
     private javax.swing.JLabel signInUsernameLbl;
     private javax.swing.JTextField signInUsernameTxtFeild;
     private javax.swing.JLabel signUpLbl;
     private javax.swing.JLabel signUpPasswordLbl;
-    private javax.swing.JTextField signUpPasswordTxtFeild;
+    private javax.swing.JPasswordField signUpPasswordTxtFeild;
     private javax.swing.JLabel signUpReEnterPasswordLbl;
-    private javax.swing.JTextField signUpReEnterPasswordTxtFeild;
+    private javax.swing.JPasswordField signUpReEnterPasswordTxtFeild;
     private javax.swing.JLabel signUpUsernameLbl;
     private javax.swing.JTextField signUpUsernameTxtFeild;
+    private javax.swing.JLabel signinErrorLbl2;
     private javax.swing.JScrollPane sixteenthScrollPane;
     private javax.swing.JTextArea sixteenthTxtArea;
     private javax.swing.JScrollPane sixthScrollPane;
