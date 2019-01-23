@@ -744,738 +744,218 @@ public class calendarCulminating extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * The first day text area is clicked and sends the user to a new form where they can edit the first days events
-     * @param evt 
-     */
     private void firstTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_firstTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 1;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_firstTxtAreaMouseClicked
 
-    /**
-     * Button on the first day that updates the calendar
-     * @param evt 
-     */
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        //Variables
-        String startTimeAmPm = (String)startAmPmCombBox.getSelectedItem();
-        String endTimeAmPm = (String)endAmPmCombBox.getSelectedItem();
-        String startTime = startTimeTxtFeild.getText();
-        String endTime = endTimeTxtFeild.getText();
-        String time = startTime +startTimeAmPm + "-" + endTime + endTimeAmPm +" ";
-        int errorStart = 0;
-        int errorEnd = 0;
-        int errorTiming = 0;
-       
-        //Sending to a method to check if the start time is valid
-        errorStart = startTime(startTime);
-        errorEnd = endTime(endTime);
-        errorTiming = checkTimes(startTime,endTime,startTimeAmPm,endTimeAmPm);
-        activity(time,errorStart,errorEnd,errorTiming);
-        
-        
-        
-        //If there is an error this shows the error label
-        if (errorStart == 1 || errorEnd == 1){
-           errorLbl1.setVisible(true); 
-        }
-        else if(errorTiming == 1){
-            errorLbl2.setVisible(true);
-        }
-        //Hiding the day and showing the month only if there are no errors
-        else if (errorStart != 1 || errorEnd != 1 || errorTiming != 1){
-            monthJFrame.show();
-            dayChangeJFrame.hide();
-            
-            errorLbl1.setVisible(false);
-            errorLbl2.setVisible(false);
-            
-            //Clearing text feilds
-            startTimeTxtFeild.setText("");
-            endTimeTxtFeild.setText("");
-            activityTxtFeild.setText("");
-        }    
+        update();    
         
         
     }//GEN-LAST:event_updateBtnActionPerformed
 
-    /**
-     * The Sign in button that initiates the sign in algorithm
-     * @param evt 
-     */
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
-        //Variables
-        File dataFile = new File("signIn.dat");
-        FileReader in;
-        BufferedReader readFile;
-        
-        String username = signInUsernameTxtFeild.getText();
-        String password = signInPasswordTxtFeild.getText();
-        String passwordPulled;
-        String usernamePulled;
-        int error = 0;
-        int passwordCheck = 0;
-        int usernameCheck = 0;
-        
-        try{
-            in = new FileReader(dataFile);
-            readFile = new BufferedReader(in);
-            
-            usernamePulled = readFile.readLine();
-            passwordPulled = readFile.readLine();
-            
-            
-            if(username.charAt(0) != ' ' && password.charAt(0) != ' '){
-                while (passwordCheck < password.length()) {
-
-                    System.out.println("test");
-                    if (password.charAt(passwordCheck) != passwordPulled.charAt(passwordCheck)) {
-                        error = 2;
-                        throw new Exception("Error");
-                    }
-                    passwordCheck++;
-                }
-                while (usernameCheck < username.length()) {
-
-                    if (username.charAt(usernameCheck) != usernamePulled.charAt(usernameCheck)) {
-                        error = 1;
-                        throw new Exception("Error");
-                    }
-                    usernameCheck++;
-                }
-                
-                }
-            else{
-
-                error = 1;
-                throw new Exception("Error");
-            }
-            
-            if(username.length() != usernamePulled.length() || password.length() != passwordPulled.length()){
-                error = 1;
-                throw new Exception("Error");
-            }
-            
-            if (error == 0){
-                //Hiding the main sign in screen
-                hide();
-
-                //Displaying and resizing the chosen date
-                monthJFrame.show();
-
-                //Came From Stack Overflow
-                monthJFrame.setSize(screenSize.width, screenSize.height);
-                
-                //Putting a name to the title
-                titleLbl.setText(accountName + "'s Calendar" );
-                
-                //Colouring exit button
-                exitBtn.setBackground(Color.black);
-
-            }
-            readFile.close();
-            in.close();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("File does not exist or could not be found.");
-            System.err.println("FileNotFoundException: " + e.getMessage());
-        } 
-        catch (IOException e) {
-            System.out.println("Problem reading file.");
-            System.err.println("IOException: " + e.getMessage());
-    	}
-        catch (Exception e){
-            if (error == 1){
-                System.err.println("You must enter a username that is the same as your account created");
-                System.err.println("Exception: " + e);
-            }
-            else if (error == 2){
-                System.err.println("You must enter the same password as the one you created");
-                System.err.println("Exception: " + e);
-            }
-            }
-        
+        signIn();  
     }//GEN-LAST:event_signInBtnActionPerformed
-
+    
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void secondTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_secondTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 2;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_secondTxtAreaMouseClicked
 
     private void thirdTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thirdTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 3;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_thirdTxtAreaMouseClicked
 
     private void fourthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fourthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 4;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_fourthTxtAreaMouseClicked
 
     private void fifthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fifthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 5;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_fifthTxtAreaMouseClicked
 
     private void sixthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sixthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 6;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_sixthTxtAreaMouseClicked
 
     private void seventhTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seventhTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 7;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_seventhTxtAreaMouseClicked
 
     private void eighthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eighthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 8;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_eighthTxtAreaMouseClicked
 
     private void ninthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ninthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 9;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_ninthTxtAreaMouseClicked
 
     private void tenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 10;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_tenthTxtAreaMouseClicked
 
     private void eleventhTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eleventhTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 11;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_eleventhTxtAreaMouseClicked
 
     private void twelfthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twelfthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 12;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twelfthTxtAreaMouseClicked
 
     private void thirteenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thirteenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 13;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_thirteenthTxtAreaMouseClicked
 
     private void fourteenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fourteenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 14;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_fourteenthTxtAreaMouseClicked
 
     private void fifteenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fifteenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 15;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_fifteenthTxtAreaMouseClicked
 
     private void sixteenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sixteenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 16;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_sixteenthTxtAreaMouseClicked
 
     private void seventeenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seventeenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 17;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_seventeenthTxtAreaMouseClicked
 
     private void eighteenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eighteenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 18;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_eighteenthTxtAreaMouseClicked
 
     private void nineteenthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nineteenthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 19;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_nineteenthTxtAreaMouseClicked
 
     private void twentiethTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentiethTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 20;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentiethTxtAreaMouseClicked
 
     private void twentyFirstTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentyFirstTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 21;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentyFirstTxtAreaMouseClicked
 
     private void twentySecondTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentySecondTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 22;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentySecondTxtAreaMouseClicked
 
     private void twentyThirdTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentyThirdTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 23;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentyThirdTxtAreaMouseClicked
 
     private void twentyFourthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentyFourthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 24;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentyFourthTxtAreaMouseClicked
 
     private void twentyFifthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentyFifthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 25;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentyFifthTxtAreaMouseClicked
 
     private void twentySixthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentySixthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 26;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentySixthTxtAreaMouseClicked
 
     private void twentySeventhTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentySeventhTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 27;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentySeventhTxtAreaMouseClicked
 
     private void twentyEighthTxtAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twentyEighthTxtAreaMouseClicked
-        //Displaying and resizing the chosen date
-        dayChangeJFrame.show();
-        
-        //Came From Stack Overflow
-        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
-        
-        //Hiding the month page so it looks cleaner
-        monthJFrame.hide();
-        
         //Setting the day variable
         day = 28;
-        
-        //Setting Day Text
-        dateLbl.setText("Febuary " + day + ",2015");
+        //Calling day method
+        day();
     }//GEN-LAST:event_twentyEighthTxtAreaMouseClicked
 
     private void createAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountBtnActionPerformed
-        //Filewriter
-        File dataFile = new File("signIn.dat");
-        FileWriter out;
-        BufferedWriter writeFile;
-        //Variables
-        String username = signUpUsernameTxtFeild.getText();
-        String password = signUpPasswordTxtFeild.getText();
-        String passwordReenterd = signUpReEnterPasswordTxtFeild.getText();
-        int error = 0;
-        
-        try{
-            if(account.equals("1")){
-                error = 3;
-                throw new Exception("Error");    
-            }
-            else{
-                out = new FileWriter(dataFile);
-                writeFile = new BufferedWriter(out);              
-
-                if(username.charAt(0) != ' ' && password.charAt(0) != ' ' && passwordReenterd.charAt(0) != ' '){
-                    if(password.length() != passwordReenterd.length()){
-                        error = 2;
-                        throw new Exception("Error");
-                    }
-
-                    if(password.equals(passwordReenterd)){ 
-                        System.out.println("Yes");
-                    }
-                    else{
-                        error = 2;
-                        throw new Exception("Error");  
-                    }
-
-
-                }
-                else{
-                    error = 1;
-                    throw new Exception("Error");
-                }
-
-                if (error == 0){
-                    writeFile.write(username);
-                    writeFile.newLine();
-                    writeFile.write(password);
-                    writeFile.newLine();
-                    writeFile.write("1");
-                    
-                    //Hiding the main sign in screen
-                     hide();
-
-                    //Displaying and resizing the chosen date
-                    monthJFrame.show();
-
-                    //Came From Stack Overflow
-                    monthJFrame.setSize(screenSize.width, screenSize.height);
-                    
-                    //Putting a name to the title
-                    titleLbl.setText(accountName + "'s Calendar" );
-                    
-                    //Colouring exit button
-                    exitBtn.setBackground(Color.black);
-                    
-                }
-                else{
-                writeFile.newLine();
-                writeFile.newLine();
-                writeFile.newLine();
-                writeFile.write("0");
-                }
-
-                writeFile.close();
-                out.close();  
-            }
-            
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("File does not exist or could not be found.");
-            System.err.println("FileNotFoundException: " + e.getMessage());
-        } 
-        catch (IOException e) {
-            System.out.println("Problem reading file.");
-            System.err.println("IOException: " + e.getMessage());
-    	}
-        catch (Exception e){
-            if (error == 1){
-                System.err.println("You must enter a user name and password");
-                System.err.println("Exception: " + e);
-                signinErrorLbl2.setText("You must enter a user name and password");
-            }
-            if (error == 2){
-                System.err.println("You must enter the same password");
-                System.err.println("Exception: " + e);
-                signInErrorLbl.setText("You must enter the same password");
-            }
-            else if (error == 3){
-                System.err.println("You already have an account");
-                System.err.println("Exception: " + e);
-                signInErrorLbl.setText("You already have an account");
-            }
-            }
-        
-        
+        createAccount();
     }//GEN-LAST:event_createAccountBtnActionPerformed
 
     private void signUpUsernameTxtFeildMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpUsernameTxtFeildMouseClicked
@@ -1491,7 +971,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpReEnterPasswordTxtFeildMouseClicked
 
     private void signInPasswordTxtFeildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInPasswordTxtFeildActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_signInPasswordTxtFeildActionPerformed
     
     /**
@@ -1701,6 +1181,14 @@ public class calendarCulminating extends javax.swing.JFrame {
         return error;
     }
     
+    /**
+     * This method checks the start and end times to see if the times are applicable 
+     * @param startTime
+     * @param endTime
+     * @param startTimeAmPm
+     * @param endTimeAmPm
+     * @return error
+     */
     public int checkTimes(String startTime, String endTime, String startTimeAmPm, String endTimeAmPm){
         //Variables
         int error = 0;
@@ -1716,15 +1204,18 @@ public class calendarCulminating extends javax.swing.JFrame {
         int[] endMinutes = new int[2];
         
         try{
+            //Setting the start time characters to an array
             for (int i = 0 ; i < startTime.length(); i ++){
                     start[i] = (int)startTime.charAt(i) - 48;
                     
             }
+            //Setting the end time characters to an array
             for (int i = 0 ; i < endTime.length(); i ++){
                     end[i] = (int)endTime.charAt(i) - 48;
                     
             }
             
+            //Checking lengths to set character checks appropriately 
             if(startTime.length() == 4){
                 startMinutes[0] = start[2] + 1;
                 startMinutes[1] = start[3] + 1;                
@@ -1741,6 +1232,7 @@ public class calendarCulminating extends javax.swing.JFrame {
                     startHour = 10 + start[1];     
                 }
             }
+            
             if(endTime.length() == 4){
                 endMinutes[0] = end[2] + 1;
                 endMinutes[1] = end[3] + 1;
@@ -1759,9 +1251,11 @@ public class calendarCulminating extends javax.swing.JFrame {
                 }
             }
             
+            //Adding up the minutes to see if one is greater then the other
             endMinute = endMinutes[0] + endMinutes[1];
             startMinute = startMinutes[0] + startMinutes[1];
             
+            //Setting errors if the end time is grater than the start time
             if (startTimeAmPm == "PM" && endTimeAmPm == "AM"){
                 error = 1;
             }
@@ -1782,6 +1276,7 @@ public class calendarCulminating extends javax.swing.JFrame {
                 error = 0;
             }
         }
+        //Catching
         catch (NumberFormatException nfe){
             System.err.println("You must use Ints");
             System.err.println("Exception: " + nfe);
@@ -1797,11 +1292,20 @@ public class calendarCulminating extends javax.swing.JFrame {
         return error;
     }
     
+    /**
+     * This method outputs the activity entered to the main screen 
+     * @param time
+     * @param errorStart
+     * @param errorEnd
+     * @param errorTiming 
+     */
     public void activity(String time,int errorStart,int errorEnd,int errorTiming){
+        //Arrray
         String[] activity = new String[28];
         
-        
+        //Checking for errors
         if(errorStart != 1 && errorEnd != 1 && errorTiming != 1){
+            //Checking if the day already has more then one activty if so set code appropriatley 
             if (timesThrough[day - 1] == 0){
             activity[day -1] = activityTxtFeild.getText();
             allDay[day - 1] = time + ":\n" + activity[day - 1] + "\n";
@@ -1812,197 +1316,223 @@ public class calendarCulminating extends javax.swing.JFrame {
             allDay[day - 1] = allDay[day - 1] + time + ":\n" + activity[day - 1] + "\n";
             allDay[day - 1] = allDay[day - 1] + "\n";   
             }
-                
-            if(day == 1){
-                firstTxtArea.setLineWrap(true);
-                firstTxtArea.setWrapStyleWord(true);
-                firstTxtArea.setText("1st \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 2){
-                secondTxtArea.setLineWrap(true);
-                secondTxtArea.setWrapStyleWord(true);
-                secondTxtArea.setText("2nd \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 3){
-                thirdTxtArea.setLineWrap(true);
-                thirdTxtArea.setWrapStyleWord(true);
-                thirdTxtArea.setText("3rd \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 4){
-                fourthTxtArea.setLineWrap(true);
-                fourthTxtArea.setWrapStyleWord(true);
-                fourthTxtArea.setText("4th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 5){
-                fifthTxtArea.setLineWrap(true);
-                fifthTxtArea.setWrapStyleWord(true);
-                fifthTxtArea.setText("5th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 6){
-                sixthTxtArea.setLineWrap(true);
-                sixthTxtArea.setWrapStyleWord(true);
-                sixthTxtArea.setText("6th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 7){
-                seventhTxtArea.setLineWrap(true);
-                seventhTxtArea.setWrapStyleWord(true);
-                seventhTxtArea.setText("7th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 8){
-                eighthTxtArea.setLineWrap(true);
-                eighthTxtArea.setWrapStyleWord(true);
-                eighthTxtArea.setText("8th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 9){
-                ninthTxtArea.setLineWrap(true);
-                ninthTxtArea.setWrapStyleWord(true);
-                ninthTxtArea.setText("9th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 10){
-                tenthTxtArea.setLineWrap(true);
-                tenthTxtArea.setWrapStyleWord(true);
-                tenthTxtArea.setText("10th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 11){
-                eleventhTxtArea.setLineWrap(true);
-                eleventhTxtArea.setWrapStyleWord(true);
-                eleventhTxtArea.setText("11th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 12){
-                twelfthTxtArea.setLineWrap(true);
-                twelfthTxtArea.setWrapStyleWord(true);
-                twelfthTxtArea.setText("12th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 13){
-                thirteenthTxtArea.setLineWrap(true);
-                thirteenthTxtArea.setWrapStyleWord(true);
-                thirteenthTxtArea.setText("13th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 14){
-                fourteenthTxtArea.setLineWrap(true);
-                fourteenthTxtArea.setWrapStyleWord(true);
-                fourteenthTxtArea.setText("14th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 15){
-                fifteenthTxtArea.setLineWrap(true);
-                fifteenthTxtArea.setWrapStyleWord(true);
-                fifteenthTxtArea.setText("15th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 16){
-                sixteenthTxtArea.setLineWrap(true);
-                sixteenthTxtArea.setWrapStyleWord(true);
-                sixteenthTxtArea.setText("16th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 17){
-                seventeenthTxtArea.setLineWrap(true);
-                seventeenthTxtArea.setWrapStyleWord(true);
-                seventeenthTxtArea.setText("17th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 18){
-                eighteenthTxtArea.setLineWrap(true);
-                eighteenthTxtArea.setWrapStyleWord(true);
-                eighteenthTxtArea.setText("18th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 19){
-                nineteenthTxtArea.setLineWrap(true);
-                nineteenthTxtArea.setWrapStyleWord(true);
-                nineteenthTxtArea.setText("19th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 20){
-                twentiethTxtArea.setLineWrap(true);
-                twentiethTxtArea.setWrapStyleWord(true);
-                twentiethTxtArea.setText("20th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 21){
-                twentyFirstTxtArea.setLineWrap(true);
-                twentyFirstTxtArea.setWrapStyleWord(true);
-                twentyFirstTxtArea.setText("21st \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 22){
-                twentySecondTxtArea.setLineWrap(true);
-                twentySecondTxtArea.setWrapStyleWord(true);
-                twentySecondTxtArea.setText("22nd \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 23){
-                twentyThirdTxtArea.setLineWrap(true);
-                twentyThirdTxtArea.setWrapStyleWord(true);
-                twentyThirdTxtArea.setText("23rd \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 24){
-                twentyFourthTxtArea.setLineWrap(true);
-                twentyFourthTxtArea.setWrapStyleWord(true);
-                twentyFourthTxtArea.setText("24th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 25){
-                twentyFifthTxtArea.setLineWrap(true);
-                twentyFifthTxtArea.setWrapStyleWord(true);
-                twentyFifthTxtArea.setText("25th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 26){
-                twentySixthTxtArea.setLineWrap(true);
-                twentySixthTxtArea.setWrapStyleWord(true);
-                twentySixthTxtArea.setText("26th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 27){
-                twentySeventhTxtArea.setLineWrap(true);
-                twentySeventhTxtArea.setWrapStyleWord(true);
-                twentySeventhTxtArea.setText("27th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
-            if(day == 28){
-                twentyEighthTxtArea.setLineWrap(true);
-                twentyEighthTxtArea.setWrapStyleWord(true); 
-                twentyEighthTxtArea.setText("28th \n" +allDay[day - 1] );
-                timesThrough[day - 1] ++;
-            }
             
-            
-        
+            //Setting indivual days dependent on what day it is 
+            if (day >= 1 && day <= 14){
+                firstDay();
+            }
+            else if(day >= 15 && day <= 28){
+                secondDay();
+            }
+
         }
     }
     
+    /**
+     * The first 14 days code for setting the activities 
+     */
+    public void firstDay(){
+        if(day == 1){
+            firstTxtArea.setLineWrap(true);
+            firstTxtArea.setWrapStyleWord(true);
+            firstTxtArea.setText("1st \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 2){
+            secondTxtArea.setLineWrap(true);
+            secondTxtArea.setWrapStyleWord(true);
+            secondTxtArea.setText("2nd \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 3){
+            thirdTxtArea.setLineWrap(true);
+            thirdTxtArea.setWrapStyleWord(true);
+            thirdTxtArea.setText("3rd \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 4){
+            fourthTxtArea.setLineWrap(true);
+            fourthTxtArea.setWrapStyleWord(true);
+            fourthTxtArea.setText("4th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 5){
+            fifthTxtArea.setLineWrap(true);
+            fifthTxtArea.setWrapStyleWord(true);
+            fifthTxtArea.setText("5th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 6){
+            sixthTxtArea.setLineWrap(true);
+            sixthTxtArea.setWrapStyleWord(true);
+            sixthTxtArea.setText("6th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 7){
+            seventhTxtArea.setLineWrap(true);
+            seventhTxtArea.setWrapStyleWord(true);
+            seventhTxtArea.setText("7th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 8){
+            eighthTxtArea.setLineWrap(true);
+            eighthTxtArea.setWrapStyleWord(true);
+            eighthTxtArea.setText("8th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 9){
+            ninthTxtArea.setLineWrap(true);
+            ninthTxtArea.setWrapStyleWord(true);
+            ninthTxtArea.setText("9th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 10){
+            tenthTxtArea.setLineWrap(true);
+            tenthTxtArea.setWrapStyleWord(true);
+            tenthTxtArea.setText("10th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 11){
+            eleventhTxtArea.setLineWrap(true);
+            eleventhTxtArea.setWrapStyleWord(true);
+            eleventhTxtArea.setText("11th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 12){
+            twelfthTxtArea.setLineWrap(true);
+            twelfthTxtArea.setWrapStyleWord(true);
+            twelfthTxtArea.setText("12th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 13){
+            thirteenthTxtArea.setLineWrap(true);
+            thirteenthTxtArea.setWrapStyleWord(true);
+            thirteenthTxtArea.setText("13th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+        if(day == 14){
+            fourteenthTxtArea.setLineWrap(true);
+            fourteenthTxtArea.setWrapStyleWord(true);
+            fourteenthTxtArea.setText("14th \n" +allDay[day - 1] );
+            timesThrough[day - 1] ++;
+        }
+    }
+    
+    /**
+     * Setting the second amount of days activities 
+     */
+    public void secondDay(){
+        if(day == 15)
+        {
+            fifteenthTxtArea.setLineWrap(true);
+            fifteenthTxtArea.setWrapStyleWord(true);
+            fifteenthTxtArea.setText("15th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 16) {
+            sixteenthTxtArea.setLineWrap(true);
+            sixteenthTxtArea.setWrapStyleWord(true);
+            sixteenthTxtArea.setText("16th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 17) {
+            seventeenthTxtArea.setLineWrap(true);
+            seventeenthTxtArea.setWrapStyleWord(true);
+            seventeenthTxtArea.setText("17th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 18) {
+            eighteenthTxtArea.setLineWrap(true);
+            eighteenthTxtArea.setWrapStyleWord(true);
+            eighteenthTxtArea.setText("18th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 19) {
+            nineteenthTxtArea.setLineWrap(true);
+            nineteenthTxtArea.setWrapStyleWord(true);
+            nineteenthTxtArea.setText("19th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 20) {
+            twentiethTxtArea.setLineWrap(true);
+            twentiethTxtArea.setWrapStyleWord(true);
+            twentiethTxtArea.setText("20th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 21) {
+            twentyFirstTxtArea.setLineWrap(true);
+            twentyFirstTxtArea.setWrapStyleWord(true);
+            twentyFirstTxtArea.setText("21st \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 22) {
+            twentySecondTxtArea.setLineWrap(true);
+            twentySecondTxtArea.setWrapStyleWord(true);
+            twentySecondTxtArea.setText("22nd \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 23) {
+            twentyThirdTxtArea.setLineWrap(true);
+            twentyThirdTxtArea.setWrapStyleWord(true);
+            twentyThirdTxtArea.setText("23rd \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 24) {
+            twentyFourthTxtArea.setLineWrap(true);
+            twentyFourthTxtArea.setWrapStyleWord(true);
+            twentyFourthTxtArea.setText("24th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 25) {
+            twentyFifthTxtArea.setLineWrap(true);
+            twentyFifthTxtArea.setWrapStyleWord(true);
+            twentyFifthTxtArea.setText("25th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 26) {
+            twentySixthTxtArea.setLineWrap(true);
+            twentySixthTxtArea.setWrapStyleWord(true);
+            twentySixthTxtArea.setText("26th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 27) {
+            twentySeventhTxtArea.setLineWrap(true);
+            twentySeventhTxtArea.setWrapStyleWord(true);
+            twentySeventhTxtArea.setText("27th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+        if (day == 28) {
+            twentyEighthTxtArea.setLineWrap(true);
+            twentyEighthTxtArea.setWrapStyleWord(true);
+            twentyEighthTxtArea.setText("28th \n" + allDay[day - 1]);
+            timesThrough[day - 1]++;
+        }
+    }
+    
+    /**
+     * Code for testing if their is an account already or not
+     */
     public void accounts(){
+        //Creating file variables
         File dataFile = new File("signIn.dat");
         FileReader in;
         BufferedReader readFile;
         
         try{
+            //Setting files to variables
             in = new FileReader(dataFile);
             readFile = new BufferedReader(in);
             
+            //Setting info taken to account variables
             accountName = readFile.readLine();
             readFile.readLine();
             account = readFile.readLine();
             
+            //Closing the file reader
             in.close();
             readFile.close();
         }
+        //Catching errors
         catch (FileNotFoundException e) {
             System.out.println("File does not exist or could not be found.");
             System.err.println("FileNotFoundException: " + e.getMessage());
@@ -2013,7 +1543,271 @@ public class calendarCulminating extends javax.swing.JFrame {
     	}
         
     }
+    
+    /**
+     * This method controls the sign in area
+     */
+    public void signIn(){
+        //Assigning the file readers to variables
+        File dataFile = new File("signIn.dat");
+        FileReader in;
+        BufferedReader readFile;
+       
+        //Variables
+        String username = signInUsernameTxtFeild.getText();
+        String password = signInPasswordTxtFeild.getText();
+        String passwordPulled;
+        String usernamePulled;
+        int error = 0;
+        int passwordCheck = 0;
+        int usernameCheck = 0;
+        
+        //Running the file reader to see if the user entered a valid account and password
+        try{
+            //Setting variables to readers
+            in = new FileReader(dataFile);
+            readFile = new BufferedReader(in);
+            
+            //Setting information gathered from file to varibles
+            usernamePulled = readFile.readLine();
+            passwordPulled = readFile.readLine();
+            
+            //Making sure that the user entered a password and username
+            if(username.charAt(0) != ' ' && password.charAt(0) != ' '){
+                while (passwordCheck < password.length()) {
+
+                    if (password.charAt(passwordCheck) != passwordPulled.charAt(passwordCheck)) {
+                        error = 2;
+                        throw new Exception("Error");
+                    }
+                    passwordCheck++;
+                }
+                while (usernameCheck < username.length()) {
+
+                    if (username.charAt(usernameCheck) != usernamePulled.charAt(usernameCheck)) {
+                        error = 1;
+                        throw new Exception("Error");
+                    }
+                    usernameCheck++;
+                }
+                
+                }
+            else{
+
+                error = 1;
+                throw new Exception("Error");
+            }
+            
+            if(username.length() != usernamePulled.length() || password.length() != passwordPulled.length()){
+                error = 1;
+                throw new Exception("Error");
+            }
+            
+            if (error == 0){
+                //Hiding the main sign in screen
+                hide();
+
+                //Displaying and resizing the chosen date
+                monthJFrame.show();
+
+                //Came From Stack Overflow
+                monthJFrame.setSize(screenSize.width, screenSize.height);
+                
+                //Putting a name to the title
+                titleLbl.setText(accountName + "'s Calendar" );
+                
+                //Colouring exit button
+                exitBtn.setBackground(Color.black);
+
+            }
+            readFile.close();
+            in.close();
+        }
+        //Catching
+        catch (FileNotFoundException e) {
+            System.out.println("File does not exist or could not be found.");
+            System.err.println("FileNotFoundException: " + e.getMessage());
+        } 
+        catch (IOException e) {
+            System.out.println("Problem reading file.");
+            System.err.println("IOException: " + e.getMessage());
+    	}
+        catch (Exception e){
+            if (error == 1){
+                System.err.println("You must enter a username that is the same as your account created");
+                System.err.println("Exception: " + e);
+            }
+            else if (error == 2){
+                System.err.println("You must enter the same password as the one you created");
+                System.err.println("Exception: " + e);
+            }
+            }
+    }
+    
+    /**
+     * This method controls the creating an account area
+     */
+    public void createAccount(){
+        //Filewriter
+        File dataFile = new File("signIn.dat");
+        FileWriter out;
+        BufferedWriter writeFile;
+        //Variables
+        String username = signUpUsernameTxtFeild.getText();
+        String password = signUpPasswordTxtFeild.getText();
+        String passwordReenterd = signUpReEnterPasswordTxtFeild.getText();
+        int error = 0;
+        
+        try{
+            if(account.equals("1")){
+                error = 3;
+                throw new Exception("Error");    
+            }
+            else{
+                out = new FileWriter(dataFile);
+                writeFile = new BufferedWriter(out);              
+
+                if(username.charAt(0) != ' ' && password.charAt(0) != ' ' && passwordReenterd.charAt(0) != ' '){
+                    if(password.length() != passwordReenterd.length()){
+                        error = 2;
+                        throw new Exception("Error");
+                    }
+
+                    if(password.equals(passwordReenterd)){ 
+                        System.out.println("Yes");
+                    }
+                    else{
+                        error = 2;
+                        throw new Exception("Error");  
+                    }
+
+
+                }
+                else{
+                    error = 1;
+                    throw new Exception("Error");
+                }
+
+                if (error == 0){
+                    writeFile.write(username);
+                    writeFile.newLine();
+                    writeFile.write(password);
+                    writeFile.newLine();
+                    writeFile.write("1");
+                    
+                    //Hiding the main sign in screen
+                     hide();
+
+                    //Displaying and resizing the chosen date
+                    monthJFrame.show();
+
+                    //Came From Stack Overflow
+                    monthJFrame.setSize(screenSize.width, screenSize.height);
+                    
+                    //Putting a name to the title
+                    titleLbl.setText(accountName + "'s Calendar" );
+                    
+                    //Colouring exit button
+                    exitBtn.setBackground(Color.black);
+                    
+                }
+                else{
+                writeFile.newLine();
+                writeFile.newLine();
+                writeFile.newLine();
+                writeFile.write("0");
+                }
+
+                writeFile.close();
+                out.close();  
+            }
+            
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File does not exist or could not be found.");
+            System.err.println("FileNotFoundException: " + e.getMessage());
+        } 
+        catch (IOException e) {
+            System.out.println("Problem reading file.");
+            System.err.println("IOException: " + e.getMessage());
+    	}
+        catch (Exception e){
+            if (error == 1){
+                System.err.println("You must enter a user name and password");
+                System.err.println("Exception: " + e);
+                signinErrorLbl2.setText("You must enter a user name and password");
+            }
+            if (error == 2){
+                System.err.println("You must enter the same password");
+                System.err.println("Exception: " + e);
+                signInErrorLbl.setText("You must enter the same password");
+            }
+            else if (error == 3){
+                System.err.println("You already have an account");
+                System.err.println("Exception: " + e);
+                signInErrorLbl.setText("You already have an account");
+            }
+            }
+    }
    
+    /**
+     * This controls the update button on the page to edit the days activities 
+     */
+    public void update(){
+        //Variables
+        String startTimeAmPm = (String)startAmPmCombBox.getSelectedItem();
+        String endTimeAmPm = (String)endAmPmCombBox.getSelectedItem();
+        String startTime = startTimeTxtFeild.getText();
+        String endTime = endTimeTxtFeild.getText();
+        String time = startTime +startTimeAmPm + "-" + endTime + endTimeAmPm +" ";
+        int errorStart = 0;
+        int errorEnd = 0;
+        int errorTiming = 0;
+       
+        //Sending to a method to check if the start time is valid
+        errorStart = startTime(startTime);
+        errorEnd = endTime(endTime);
+        errorTiming = checkTimes(startTime,endTime,startTimeAmPm,endTimeAmPm);
+        activity(time,errorStart,errorEnd,errorTiming);
+        
+        
+        
+        //If there is an error this shows the error label
+        if (errorStart == 1 || errorEnd == 1){
+           errorLbl1.setVisible(true); 
+        }
+        else if(errorTiming == 1){
+            errorLbl2.setVisible(true);
+        }
+        //Hiding the day and showing the month only if there are no errors
+        else if (errorStart != 1 || errorEnd != 1 || errorTiming != 1){
+            monthJFrame.show();
+            dayChangeJFrame.hide();
+            
+            errorLbl1.setVisible(false);
+            errorLbl2.setVisible(false);
+            
+            //Clearing text feilds
+            startTimeTxtFeild.setText("");
+            endTimeTxtFeild.setText("");
+            activityTxtFeild.setText("");
+        }
+    }
+    
+    /**
+     * Setting the correct day information for each day
+     */
+    public void day(){
+        //Displaying and resizing the chosen date
+        dayChangeJFrame.show();
+        //Came From Stack Overflow
+        dayChangeJFrame.setSize(screenSize.width, screenSize.height);
+        //Hiding the month page so it looks cleaner
+        monthJFrame.hide();
+        //Setting Day Text
+        dateLbl.setText("Febuary " + day + ",2015");
+    }
+    
     /**
      * @param args the command line arguments
      */
