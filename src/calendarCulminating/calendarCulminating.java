@@ -1564,6 +1564,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         
         //Running the file reader to see if the user entered a valid account and password
         try{
+            System.out.println(accountName);
             //Setting variables to readers
             in = new FileReader(dataFile);
             readFile = new BufferedReader(in);
@@ -1659,6 +1660,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         int error = 0;
         
         try{
+            
             if(account.equals("1")){
                 error = 3;
                 throw new Exception("Error");    
@@ -1674,7 +1676,7 @@ public class calendarCulminating extends javax.swing.JFrame {
                     }
 
                     if(password.equals(passwordReenterd)){ 
-                        System.out.println("Yes");
+                        
                     }
                     else{
                         error = 2;
@@ -1705,7 +1707,7 @@ public class calendarCulminating extends javax.swing.JFrame {
                     monthJFrame.setSize(screenSize.width, screenSize.height);
                     
                     //Putting a name to the title
-                    titleLbl.setText(accountName + "'s Calendar" );
+                    titleLbl.setText(username + "'s Calendar" );
                     
                     //Colouring exit button
                     exitBtn.setBackground(Color.black);
