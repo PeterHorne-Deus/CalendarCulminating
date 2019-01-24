@@ -31,6 +31,9 @@ public class calendarCulminating extends javax.swing.JFrame {
     int[] timesThrough = new int[28];
     String account = "";
     String accountName = "";
+    int[] numberActivities = new int[28];
+    String username;
+    String password;
     
     //Stack overflow
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -758,6 +761,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         day = 1;
         //Calling day method
         day();
+        
     }//GEN-LAST:event_firstTxtAreaMouseClicked
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -769,6 +773,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     }//GEN-LAST:event_signInBtnActionPerformed
     
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        //exit();
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
@@ -1575,7 +1580,6 @@ public class calendarCulminating extends javax.swing.JFrame {
         
         //Running the file reader to see if the user entered a valid account and password
         try{
-            System.out.println(accountName);
             //Setting variables to readers
             in = new FileReader(dataFile);
             readFile = new BufferedReader(in);
@@ -1665,8 +1669,8 @@ public class calendarCulminating extends javax.swing.JFrame {
         FileWriter out;
         BufferedWriter writeFile;
         //Variables
-        String username = signUpUsernameTxtFeild.getText();
-        String password = signUpPasswordTxtFeild.getText();
+        password = signUpPasswordTxtFeild.getText();
+        username = signUpUsernameTxtFeild.getText();
         String passwordReenterd = signUpReEnterPasswordTxtFeild.getText();
         int error = 0;
         
@@ -1828,6 +1832,45 @@ public class calendarCulminating extends javax.swing.JFrame {
         //Shows the month
         monthJFrame.show();
         dayChangeJFrame.hide();
+    }
+    
+    public void exit(){
+        //Filewriter
+        File dataFile = new File("signIn.dat");
+        FileWriter out;
+        BufferedWriter writeFile;
+        
+        try{
+            out = new FileWriter(dataFile);
+            writeFile = new BufferedWriter(out);
+            
+            for(int i = 0; i < 28; i++){
+                if(i == 0){
+                    writeFile.write(username);
+                    writeFile.newLine();
+                    writeFile.write(password);
+                    writeFile.newLine();
+                    writeFile.write("1");
+                }
+                writeFile.write(allDay[i]);
+                
+            }
+            
+            
+            
+            out.close();
+            writeFile.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File does not exist or could not be found.");
+            System.err.println("FileNotFoundException: " + e.getMessage());
+        } 
+        catch (IOException e) {
+            System.out.println("Problem reading file.");
+            System.err.println("IOException: " + e.getMessage());
+    	}
+        
+        System.exit(0);
     }
     /**
      * @param args the command line arguments
