@@ -137,6 +137,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         startAmPmCombBox = new javax.swing.JComboBox();
         errorLbl1 = new javax.swing.JLabel();
         errorLbl2 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
         signInBackgroundPnl = new javax.swing.JPanel();
         signUpLbl = new javax.swing.JLabel();
         signUpReEnterPasswordLbl = new javax.swing.JLabel();
@@ -625,6 +626,14 @@ public class calendarCulminating extends javax.swing.JFrame {
         errorLbl2.setText("Make sure your start time is later then your end time");
         backgroundPanel.add(errorLbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        backgroundPanel.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         javax.swing.GroupLayout dayChangeJFrameLayout = new javax.swing.GroupLayout(dayChangeJFrame.getContentPane());
         dayChangeJFrame.getContentPane().setLayout(dayChangeJFrameLayout);
         dayChangeJFrameLayout.setHorizontalGroup(
@@ -753,8 +762,6 @@ public class calendarCulminating extends javax.swing.JFrame {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         update();    
-        
-        
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
@@ -973,6 +980,10 @@ public class calendarCulminating extends javax.swing.JFrame {
     private void signInPasswordTxtFeildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInPasswordTxtFeildActionPerformed
 
     }//GEN-LAST:event_signInPasswordTxtFeildActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        back();
+    }//GEN-LAST:event_backBtnActionPerformed
     
     /**
      * This method checks the start time of the event to see if it is a usable time
@@ -983,7 +994,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         //Varaibles and arrays
         char startTimeCheck;
         int error = 0;
-        char colon = ':';
+        final char COLON = ':';
         //Arrays
         int[] checkStart = new int[4];
         int[] minute = new int[2];
@@ -1013,14 +1024,14 @@ public class calendarCulminating extends javax.swing.JFrame {
                 }
                 //Checking if the first number is a 1
                 if(checkStart[0] == 1){
-                    //If the number is a one I want to check if the second one is a colon or another number
+                    //If the number is a one I want to check if the second one is a COLON or another number
                     if (checkStart[1] == 10){
                        
-                        //If the number is a colon then I must check a different posisition to check the minute time 
+                        //If the number is a COLON then I must check a different posisition to check the minute time 
                         minute[0] = startTime.charAt(2) -48;
                         minute[1] = startTime.charAt(3) - 48;
-                        //Making sure the user entered a colon
-                        if(startTime.charAt(1) != colon){
+                        //Making sure the user entered a COLON
+                        if(startTime.charAt(1) != COLON){
                             error = 1;
                             errorLbl1.setVisible(true);
 
@@ -1029,15 +1040,15 @@ public class calendarCulminating extends javax.swing.JFrame {
                     }
                     else {
                         
-                        //If the second number is not a colon then I must check to make sure it is a time that is useable
+                        //If the second number is not a COLON then I must check to make sure it is a time that is useable
                         if (checkStart[1] == 0 ||checkStart[1] == 1 ||checkStart[1] == 2){
                             
                             //Setting the appropriate minute check
                             minute[0] = startTime.charAt(3) -48;
                             minute[1] = startTime.charAt(4) - 48;
 
-                            //Making sure the user entered a colon
-                            if(startTime.charAt(2) != colon){
+                            //Making sure the user entered a COLON
+                            if(startTime.charAt(2) != COLON){
                                 error = 1;
                                 errorLbl1.setVisible(true);
 
@@ -1086,7 +1097,7 @@ public class calendarCulminating extends javax.swing.JFrame {
         //Varaibles and arrays
         char endTimeCheck;
         int error = 0;
-        char colon = ':';
+        final char COLON = ':';
         //Arrays
         int[] checkEnd = new int[4];
         int[] minute = new int[2];
@@ -1116,14 +1127,14 @@ public class calendarCulminating extends javax.swing.JFrame {
                 }
                 //Checking if the first number is a 1
                 if(checkEnd[0] == 1){
-                    //If the number is a one I want to check if the second one is a colon or another number
+                    //If the number is a one I want to check if the second one is a COLON or another number
                     if (checkEnd[1] == 10){
                        
-                        //If the number is a colon then I must check a different posisition to check the minute time 
+                        //If the number is a COLON then I must check a different posisition to check the minute time 
                         minute[0] = endTime.charAt(2) -48;
                         minute[1] = endTime.charAt(3) - 48;
-                        //Making sure the user entered a colon
-                        if(endTime.charAt(1) != colon){
+                        //Making sure the user entered a COLON
+                        if(endTime.charAt(1) != COLON){
                             error = 1;
                             errorLbl1.setVisible(true);
 
@@ -1131,7 +1142,7 @@ public class calendarCulminating extends javax.swing.JFrame {
                         }
                     }
                     else {
-                        //If the second number is not a colon then I must check to make sure it is a time that is useable
+                        //If the second number is not a COLON then I must check to make sure it is a time that is useable
                         if (checkEnd[1] == 0 ||checkEnd[1] == 1 ||checkEnd[1] == 2){
                             
                             
@@ -1139,8 +1150,8 @@ public class calendarCulminating extends javax.swing.JFrame {
                             minute[0] = endTime.charAt(3) -48;
                             minute[1] = endTime.charAt(4) - 48;
 
-                            //Making sure the user entered a colon
-                            if(endTime.charAt(2) != colon){
+                            //Making sure the user entered a COLON
+                            if(endTime.charAt(2) != COLON){
                                 error = 1;
                                 errorLbl1.setVisible(true);
 
@@ -1811,6 +1822,14 @@ public class calendarCulminating extends javax.swing.JFrame {
     }
     
     /**
+     * A back button
+     */
+    public void back(){
+        //Shows the month
+        monthJFrame.show();
+        dayChangeJFrame.hide();
+    }
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -1848,6 +1867,7 @@ public class calendarCulminating extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityLbl;
     private javax.swing.JTextField activityTxtFeild;
+    private javax.swing.JButton backBtn;
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton createAccountBtn;
     private javax.swing.JLabel dateLbl;
